@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Bird Tap Game - The Flying Bird Game</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #FFC107;
+      --background-color: #F0F4F8;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .font-brand {
+      font-family: 'Fredoka One', cursive;
+    }
+    .bg-gradient-sky {
+      background: linear-gradient(180deg, #87CEEB 0%, #E0F2F1 100%);
+    }
+  </style>
+</head>
+<body class="bg-background-color">
+  <div class="relative flex min-h-[100dvh] flex-col overflow-hidden bg-gradient-sky">
+    <img
+      alt="Illustrated background with clouds and a sun"
+      class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-multiply"
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBZosK5yrkFuj2J-emFjvaCRU_qUA3XULX2ULgPOGDv_E4Kn1U3bWJps-Bs5Zj-wS98HHF_BoeC-InCEVzxw7492OByNTOIVsISG-TGaTYwuPK3VVCCIDywPwa6b0upEYsUVSpLxOfWRyNuBRyerhTXtqSei0j39Vdy2oYGZAcISBXbOX1QpE-6TCzGrNZ0SY7Aw9vwvMFDOPeUkk79rhKJn0m7zPiuuFZ-wdGi2_vDUQVFkEZThG_T9-NXcKo064qXfYznf6aS3g"
+    />
+    
+    <div class="relative z-10 flex grow flex-col items-center justify-center p-4">
+      <!-- Home Screen -->
+      <main id="home-screen" class="flex flex-col items-center justify-center text-center max-w-xl w-full">
+        <div class="bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg flex flex-col items-center gap-5 w-full">
+          <div class="flex items-center gap-3">
+            <h1 class="font-brand text-5xl md:text-7xl text-gray-800 tracking-wider">Bird Tap Game</h1>
+          </div>
+          <p class="text-lg md:text-xl text-gray-600 mt-1">The classic Indian flying bird game, reimagined!</p>
+          <div class="flex flex-col items-center gap-4 mt-6 w-full">
+            <button id="start-btn" class="flex items-center justify-center gap-3 h-16 w-full max-w-xs rounded-full bg-[var(--primary-color)] px-6 text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-green-600 hover:-translate-y-1 hover:shadow-2xl transform">
+              <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" fill-rule="evenodd"></path>
+              </svg>
+              Start Game!
+            </button>
+            <button class="flex items-center justify-center gap-3 h-16 w-full max-w-xs rounded-full bg-white/80 px-6 text-xl md:text-2xl font-bold text-gray-700 shadow-lg transition-all duration-300 ease-in-out hover:bg-white hover:-translate-y-1 hover:shadow-2xl transform backdrop-blur-sm border border-gray-200">
+              <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              How To Play
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <!-- Countdown Screen -->
+      <main id="countdown-screen" class="hidden flex flex-col items-center justify-center text-center max-w-xl w-full">
+        <div class="bg-white/70 backdrop-blur-sm p-8 md:p-12 rounded-2xl shadow-lg flex flex-col items-center gap-6 w-full">
+          <h2 class="font-brand text-6xl md:text-8xl text-gray-800 tracking-wider" id="countdown">3</h2>
+        </div>
+      </main>
+
+      <!-- Game Screen -->
+      <main id="game-screen" class="hidden flex flex-col items-center justify-center text-center max-w-xl w-full">
+        <div class="bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg flex flex-col items-center gap-5 w-full">
+          <div id="word-display" class="font-brand text-4xl md:text-6xl text-gray-800 min-h-[100px] flex items-center justify-center px-4 py-5 rounded-xl bg-white/50 w-full">
+            <!-- Word appears here -->
+          </div>
+
+          <div class="flex justify-between w-full max-w-md text-base md:text-lg font-semibold text-gray-700">
+            <div>Score: <span id="score">0</span></div>
+            <div>Time: <span id="timer">1.0</span>s</div>
+          </div>
+
+          <button id="bird-btn" class="flex items-center justify-center gap-3 h-16 w-full max-w-xs rounded-full bg-[var(--primary-color)] px-6 text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-green-600 hover:-translate-y-1 hover:shadow-2xl transform mt-2">
+            <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+            Bird!
+          </button>
+
+          <div class="text-base md:text-lg font-semibold text-amber-600 mt-3">
+            Highscore: <span id="highscore">0</span>
+          </div>
+        </div>
+      </main>
+
+      <!-- ✅ END SCREEN — Now truly non-scrollable & centered -->
+      <main id="end-screen" class="hidden flex flex-col items-center justify-center text-center max-w-xl w-full">
+        <div class="bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg flex flex-col items-center gap-5 w-full">
+          <h2 class="font-brand text-5xl md:text-7xl text-gray-800 tracking-wider">Game Over!</h2>
+          <p class="text-lg md:text-xl text-gray-600 mt-1">Your Score: <span id="final-score" class="font-bold">0</span></p>
+          <p class="text-base md:text-lg text-amber-600 font-semibold">Highscore: <span id="end-highscore">0</span></p>
+          
+          <div class="flex flex-col items-center gap-4 mt-6 w-full">
+            <button id="restart-btn" class="flex items-center justify-center gap-3 h-16 w-full max-w-xs rounded-full bg-[var(--primary-color)] px-6 text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-green-600 hover:-translate-y-1 hover:shadow-2xl transform">
+              <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"></path>
+              </svg>
+              Restart Game
+            </button>
+            <button id="reset-btn" class="flex items-center justify-center gap-3 h-16 w-full max-w-xs rounded-full bg-amber-500 px-6 text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-amber-600 hover:-translate-y-1 hover:shadow-2xl transform">
+              <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a.75.75 0 001.06 0l3.182-3.183m-4.243-2.122a.75.75 0 011.06 0l3.182 3.182m-4.243-2.122l3.181-3.181m-3.181 3.181L2.985 7.356" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              Reset Highscore
+            </button>
+            <button id="menu-btn" class="flex items-center justify-center gap-3 h-16 w-full max-w-xs rounded-full bg-white/80 px-6 text-xl md:text-2xl font-bold text-gray-700 shadow-lg transition-all duration-300 ease-in-out hover:bg-white hover:-translate-y-1 hover:shadow-2xl transform backdrop-blur-sm border border-gray-200">
+              <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0116.5 19.875V4.125z" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              Main Menu
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // DOM Elements
+    const homeScreen = document.getElementById('home-screen');
+    const countdownScreen = document.getElementById('countdown-screen');
+    const gameScreen = document.getElementById('game-screen');
+    const endScreen = document.getElementById('end-screen');
+    const startBtn = document.getElementById('start-btn');
+    const countdownEl = document.getElementById('countdown');
+    const wordDisplay = document.getElementById('word-display');
+    const scoreEl = document.getElementById('score');
+    const timerEl = document.getElementById('timer');
+    const birdBtn = document.getElementById('bird-btn');
+    const highscoreEl = document.getElementById('highscore');
+    const finalScoreEl = document.getElementById('final-score');
+    const endHighscoreEl = document.getElementById('end-highscore');
+    const restartBtn = document.getElementById('restart-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const menuBtn = document.getElementById('menu-btn');
+
+    // Game State
+    let score = 0;
+    let highscore = localStorage.getItem('birdGameHighscore') || 0;
+    let currentWord = '';
+    let isBird = false;
+    let gameActive = false;
+    let wordTimeout = null;
+    let timerInterval = null;
+    let timeLeft = 1.0;
+
+    // Word Lists
+    const birdNames = [
+      'Sparrow', 'Crow', 'Pigeon', 'Parrot', 'Eagle', 'Peacock',
+      'Owl', 'Duck', 'Swan', 'Hawk', 'Falcon', 'Vulture',
+      'Kingfisher', 'Woodpecker', 'Mynah', 'Bulbul', 'Robin',
+      'Hummingbird', 'Flamingo', 'Stork'
+    ];
+
+    const nonBirdWords = [
+      'Tiger', 'Lion', 'Elephant', 'Car', 'House', 'Tree',
+      'Computer', 'Phone', 'Book', 'Chair', 'Table', 'Mountain',
+      'River', 'Ocean', 'Sun', 'Moon', 'Star', 'Cloud',
+      'Rain', 'Wind', 'Fire', 'Water', 'Earth', 'Air'
+    ];
+
+    // Initialize highscore
+    highscoreEl.textContent = highscore;
+    endHighscoreEl.textContent = highscore;
+
+    // Event Listeners
+    startBtn.addEventListener('click', startGame);
+    birdBtn.addEventListener('click', handleBirdClick);
+    restartBtn.addEventListener('click', startGame);
+    resetBtn.addEventListener('click', resetHighscore);
+    menuBtn.addEventListener('click', showHomeScreen);
+
+    // Game Functions
+    function startGame() {
+      score = 0;
+      scoreEl.textContent = score;
+      gameActive = true;
+      showCountdown();
+    }
+
+    function showCountdown() {
+      homeScreen.classList.add('hidden');
+      countdownScreen.classList.remove('hidden');
+      gameScreen.classList.add('hidden');
+      endScreen.classList.add('hidden');
+
+      let count = 3;
+      countdownEl.textContent = count;
+
+      const countdownInterval = setInterval(() => {
+        count--;
+        if (count > 0) {
+          countdownEl.textContent = count;
+        } else {
+          clearInterval(countdownInterval);
+          countdownEl.textContent = 'Go!';
+          setTimeout(() => {
+            countdownScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            startWordCycle();
+          }, 500);
+        }
+      }, 1000);
+    }
+
+    function startWordCycle() {
+      if (!gameActive) return;
+
+      clearTimeout(wordTimeout);
+      clearInterval(timerInterval);
+
+      timeLeft = 1.0;
+      timerEl.textContent = timeLeft.toFixed(1);
+      timerEl.classList.remove('text-red-500');
+
+      const isBirdWord = Math.random() > 0.5;
+      const wordList = isBirdWord ? birdNames : nonBirdWords;
+      currentWord = wordList[Math.floor(Math.random() * wordList.length)];
+      isBird = isBirdWord;
+
+      wordDisplay.textContent = currentWord;
+
+      timerInterval = setInterval(() => {
+        timeLeft -= 0.1;
+        timerEl.textContent = timeLeft.toFixed(1);
+
+        if (timeLeft <= 0.3) {
+          timerEl.classList.add('text-red-500');
+        }
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          if (isBird) {
+            endGame();
+          } else {
+            startWordCycle();
+          }
+        }
+      }, 100);
+
+      wordTimeout = setTimeout(() => {
+        if (gameActive && !isBird) {
+          startWordCycle();
+        }
+      }, 3000);
+    }
+
+    function handleBirdClick() {
+      if (!gameActive) return;
+
+      if (isBird) {
+        score++;
+        scoreEl.textContent = score;
+
+        if (score > highscore) {
+          highscore = score;
+          highscoreEl.textContent = highscore;
+          localStorage.setItem('birdGameHighscore', highscore);
+        }
+
+        clearTimeout(wordTimeout);
+        clearInterval(timerInterval);
+        startWordCycle();
+      } else {
+        endGame();
+      }
+    }
+
+    function endGame() {
+      gameActive = false;
+      clearTimeout(wordTimeout);
+      clearInterval(timerInterval);
+
+      finalScoreEl.textContent = score;
+      endHighscoreEl.textContent = highscore;
+
+      gameScreen.classList.add('hidden');
+      endScreen.classList.remove('hidden');
+    }
+
+    function resetHighscore() {
+      highscore = 0;
+      localStorage.setItem('birdGameHighscore', '0');
+      highscoreEl.textContent = '0';
+      endHighscoreEl.textContent = '0';
+    }
+
+    function showHomeScreen() {
+      endScreen.classList.add('hidden');
+      homeScreen.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
