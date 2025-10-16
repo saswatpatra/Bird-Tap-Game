@@ -100,10 +100,7 @@
             <div>Time: <span id="timer" class="transition-all duration-300">1.0</span>s</div>
           </div>
 
-          <button id="bird-btn" class="interactive btn-glow flex items-center justify-center gap-3 h-14 sm:h-16 w-full max-w-xs rounded-full bg-[var(--primary-color)] px-6 text-lg sm:text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-green-600 hover:-translate-y-1 hover:shadow-2xl transform mt-2">
-            <svg class="h-7 w-7 sm:h-8 sm:w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" fill-rule="evenodd"></path>
-            </svg>
+          <button id="bird-btn" class="interactive btn-glow flex items-center justify-center h-14 sm:h-16 w-full max-w-xs rounded-full bg-[var(--primary-color)] px-6 text-lg sm:text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-green-600 hover:-translate-y-1 hover:shadow-2xl transform mt-2">
             Bird!
           </button>
 
@@ -158,8 +155,8 @@
 
       <div class="space-y-3 text-gray-700 text-sm md:text-base max-w-prose mx-auto">
         <p>✅ A word will appear on screen.</p>
-        <p>🐦 If it’s a <strong>bird</strong> (e.g., <em>Sparrow</em>, <em>Eagle</em>), tap the <strong>“Bird!”</strong> button quickly.</p>
-        <p>🚫 If it’s <strong>not a bird</strong> (e.g., <em>Tiger</em>, <em>Car</em>), <strong>do nothing</strong>.</p>
+        <p>🐦 If it's a <strong>bird</strong> (e.g., <em>Sparrow</em>, <em>Eagle</em>), tap the <strong>"Bird!"</strong> button quickly.</p>
+        <p>🚫 If it's <strong>not a bird</strong> (e.g., <em>Tiger</em>, <em>Car</em>), <strong>do nothing</strong>.</p>
         <p>⏱️ You have only <strong>1 second</strong> to react to bird words!</p>
         <div class="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
           <p class="text-red-700 font-medium text-center">Game Over if:</p>
@@ -181,9 +178,16 @@
     </div>
   </div>
 
-  <!-- Silent audio for tick -->
+  <!-- Confetti Container -->
+  <div id="confetti-container" class="fixed inset-0 pointer-events-none z-40 hidden"></div>
+
+  <!-- Audio elements -->
   <audio id="tick-sound" preload="auto">
-    <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg">
+    <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
+  </audio>
+
+  <audio id="confetti-sound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
   </audio>
 
   <script>
@@ -209,6 +213,8 @@
     const resetBtn = document.getElementById('reset-btn');
     const menuBtn = document.getElementById('menu-btn');
     const tickSound = document.getElementById('tick-sound');
+    const confettiSound = document.getElementById('confetti-sound');
+    const confettiContainer = document.getElementById('confetti-container');
 
     // Game State
     let score = 0;
@@ -220,6 +226,7 @@
     let timerInterval = null;
     let timeLeft = 1.0;
     let userInteracted = false;
+    let newHighscoreAchieved = false;
 
     // Word Lists
     const birdNames = [
@@ -256,11 +263,70 @@
       if (e.target === howToPlayModal) howToPlayModal.classList.add('hidden');
     });
 
+    // Confetti Function
+    function createConfetti() {
+      confettiContainer.classList.remove('hidden');
+      confettiContainer.innerHTML = '';
+      
+      // Play confetti sound if user has interacted
+      if (userInteracted) {
+        confettiSound.currentTime = 0;
+        confettiSound.play().catch(() => {});
+      }
+
+      const colors = ['#FFC107', '#4CAF50', '#2196F3', '#E91E63', '#9C27B0', '#FF5722'];
+      const confettiCount = 150;
+
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        const size = Math.random() * 10 + 5;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        confetti.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          background-color: ${color};
+          top: -20px;
+          left: ${Math.random() * 100}%;
+          border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+          opacity: ${Math.random() * 0.8 + 0.2};
+          transform: rotate(${Math.random() * 360}deg);
+          animation: confetti-fall ${Math.random() * 3 + 2}s linear forwards;
+        `;
+
+        confettiContainer.appendChild(confetti);
+      }
+
+      // Remove confetti after animation
+      setTimeout(() => {
+        confettiContainer.classList.add('hidden');
+        confettiContainer.innerHTML = '';
+      }, 4000);
+    }
+
+    // Add confetti animation to styles
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
     // Game Functions
     function startGame() {
       score = 0;
       scoreEl.textContent = score;
       gameActive = true;
+      newHighscoreAchieved = false;
       showCountdown();
     }
 
@@ -344,10 +410,13 @@
         score++;
         scoreEl.textContent = score;
 
-        if (score > highscore) {
+        // Check if new highscore
+        const oldHighscore = parseInt(highscore);
+        if (score > oldHighscore) {
           highscore = score;
           highscoreEl.textContent = highscore;
           localStorage.setItem('birdGameHighscore', highscore);
+          newHighscoreAchieved = true;
         }
 
         clearTimeout(wordTimeout);
@@ -365,6 +434,11 @@
 
       finalScoreEl.textContent = score;
       endHighscoreEl.textContent = highscore;
+
+      // Show confetti only if new highscore was achieved
+      if (newHighscoreAchieved) {
+        createConfetti();
+      }
 
       gameScreen.classList.add('hidden');
       endScreen.classList.remove('hidden');
@@ -394,6 +468,8 @@
     function showHomeScreen() {
       endScreen.classList.add('hidden');
       homeScreen.classList.remove('hidden');
+      // Hide confetti when going to home screen
+      confettiContainer.classList.add('hidden');
     }
   </script>
 </body>
