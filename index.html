@@ -46,15 +46,541 @@
     .btn-glow-amber:hover {
       box-shadow: 0 0 12px 4px rgba(255, 193, 7, 0.4);
     }
+
+    /* Enhanced Cloud Styles with Texture */
+    .cloud-container {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 50%;
+      filter: blur(2px) brightness(1.05);
+      opacity: 0.85;
+      animation: float linear infinite;
+      background-image: 
+        radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 20%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 30%, transparent 60%);
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: '';
+      position: absolute;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 50%;
+      background-image: 
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 50%, transparent 70%);
+    }
+
+    /* Original clouds with texture */
+    .cloud-1 {
+      width: 180px;
+      height: 60px;
+      top: 10%;
+      left: -180px;
+      animation-duration: 120s;
+      animation-delay: 0s;
+    }
+
+    .cloud-1::before {
+      width: 70px;
+      height: 70px;
+      top: -25px;
+      left: 15px;
+    }
+
+    .cloud-1::after {
+      width: 55px;
+      height: 55px;
+      top: -20px;
+      right: 20px;
+    }
+
+    .cloud-2 {
+      width: 220px;
+      height: 75px;
+      top: 30%;
+      left: -220px;
+      animation-duration: 140s;
+      animation-delay: 20s;
+    }
+
+    .cloud-2::before {
+      width: 85px;
+      height: 85px;
+      top: -30px;
+      left: 20px;
+    }
+
+    .cloud-2::after {
+      width: 65px;
+      height: 65px;
+      top: -25px;
+      right: 25px;
+    }
+
+    .cloud-3 {
+      width: 160px;
+      height: 55px;
+      top: 50%;
+      left: -160px;
+      animation-duration: 130s;
+      animation-delay: 40s;
+    }
+
+    .cloud-3::before {
+      width: 60px;
+      height: 60px;
+      top: -22px;
+      left: 12px;
+    }
+
+    .cloud-3::after {
+      width: 50px;
+      height: 50px;
+      top: -18px;
+      right: 18px;
+    }
+
+    .cloud-4 {
+      width: 200px;
+      height: 65px;
+      top: 20%;
+      left: -200px;
+      animation-duration: 150s;
+      animation-delay: 60s;
+    }
+
+    .cloud-4::before {
+      width: 75px;
+      height: 75px;
+      top: -28px;
+      left: 18px;
+    }
+
+    .cloud-4::after {
+      width: 60px;
+      height: 60px;
+      top: -23px;
+      right: 22px;
+    }
+
+    .cloud-5 {
+      width: 140px;
+      height: 50px;
+      top: 65%;
+      left: -140px;
+      animation-duration: 125s;
+      animation-delay: 80s;
+    }
+
+    .cloud-5::before {
+      width: 55px;
+      height: 55px;
+      top: -20px;
+      left: 10px;
+    }
+
+    .cloud-5::after {
+      width: 45px;
+      height: 45px;
+      top: -16px;
+      right: 15px;
+    }
+
+    .cloud-6 {
+      width: 190px;
+      height: 62px;
+      top: 40%;
+      left: -190px;
+      animation-duration: 135s;
+      animation-delay: 100s;
+    }
+
+    .cloud-6::before {
+      width: 68px;
+      height: 68px;
+      top: -26px;
+      left: 16px;
+    }
+
+    .cloud-6::after {
+      width: 58px;
+      height: 58px;
+      top: -21px;
+      right: 19px;
+    }
+
+    /* Additional Clouds */
+    .cloud-7 {
+      width: 210px;
+      height: 70px;
+      top: 15%;
+      left: 15%;
+      animation-duration: 160s;
+      animation-delay: 5s;
+    }
+
+    .cloud-7::before {
+      width: 80px;
+      height: 80px;
+      top: -28px;
+      left: 18px;
+    }
+
+    .cloud-7::after {
+      width: 65px;
+      height: 65px;
+      top: -23px;
+      right: 20px;
+    }
+
+    .cloud-8 {
+      width: 150px;
+      height: 52px;
+      top: 55%;
+      left: 25%;
+      animation-duration: 155s;
+      animation-delay: 15s;
+    }
+
+    .cloud-8::before {
+      width: 58px;
+      height: 58px;
+      top: -21px;
+      left: 12px;
+    }
+
+    .cloud-8::after {
+      width: 48px;
+      height: 48px;
+      top: -17px;
+      right: 16px;
+    }
+
+    .cloud-9 {
+      width: 230px;
+      height: 78px;
+      top: 25%;
+      left: 45%;
+      animation-duration: 170s;
+      animation-delay: 25s;
+    }
+
+    .cloud-9::before {
+      width: 88px;
+      height: 88px;
+      top: -32px;
+      left: 22px;
+    }
+
+    .cloud-9::after {
+      width: 70px;
+      height: 70px;
+      top: -27px;
+      right: 24px;
+    }
+
+    .cloud-10 {
+      width: 130px;
+      height: 48px;
+      top: 70%;
+      left: 65%;
+      animation-duration: 140s;
+      animation-delay: 35s;
+    }
+
+    .cloud-10::before {
+      width: 52px;
+      height: 52px;
+      top: -19px;
+      left: 10px;
+    }
+
+    .cloud-10::after {
+      width: 42px;
+      height: 42px;
+      top: -15px;
+      right: 14px;
+    }
+
+    .cloud-11 {
+      width: 190px;
+      height: 65px;
+      top: 45%;
+      left: 75%;
+      animation-duration: 165s;
+      animation-delay: 45s;
+    }
+
+    .cloud-11::before {
+      width: 72px;
+      height: 72px;
+      top: -26px;
+      left: 16px;
+    }
+
+    .cloud-11::after {
+      width: 60px;
+      height: 60px;
+      top: -22px;
+      right: 18px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateX(0) translateY(0px);
+      }
+      50% {
+        transform: translateX(calc(100vw + 400px)) translateY(-3px);
+      }
+      100% {
+        transform: translateX(calc(100vw + 400px)) translateY(0px);
+      }
+    }
+
+    /* Sun Effect */
+    .sun {
+      position: absolute;
+      top: 8%;
+      right: 10%;
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle, #FFD700 0%, #FFA500 70%, transparent 100%);
+      border-radius: 50%;
+      filter: blur(6px) brightness(1.1);
+      opacity: 0.85;
+      z-index: 1;
+    }
+
+    /* Sky Gradient Enhancement */
+    .sky-gradient {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(135, 206, 235, 0.25) 0%, transparent 50%),
+        linear-gradient(180deg, #87CEEB 0%, #E0F2F1 100%);
+      z-index: 0;
+    }
+
+    /* Realistic Grass Styles */
+    .grass-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .grass-layer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(0deg, 
+        #2E7D32 0%, 
+        #388E3C 15%, 
+        #4CAF50 30%, 
+        #66BB6A 50%, 
+        #81C784 70%, 
+        #A5D6A7 90%);
+      clip-path: polygon(
+        0% 100%, 
+        2% 85%, 4% 92%, 6% 78%, 8% 95%, 
+        10% 82%, 12% 88%, 14% 75%, 16% 90%, 18% 80%,
+        20% 85%, 22% 70%, 24% 88%, 26% 78%, 28% 92%,
+        30% 82%, 32% 85%, 34% 72%, 36% 89%, 38% 79%,
+        40% 86%, 42% 74%, 44% 91%, 46% 81%, 48% 87%,
+        50% 76%, 52% 93%, 54% 83%, 56% 89%, 58% 77%,
+        60% 84%, 62% 71%, 64% 86%, 66% 79%, 68% 94%,
+        70% 82%, 72% 88%, 74% 75%, 76% 91%, 78% 81%,
+        80% 87%, 82% 73%, 84% 90%, 86% 80%, 88% 95%,
+        90% 83%, 92% 89%, 94% 76%, 96% 92%, 98% 82%,
+        100% 100%
+      );
+    }
+
+    .grass-blades {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 150px;
+      z-index: 3;
+    }
+
+    .grass-blade {
+      position: absolute;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(0deg, 
+        rgba(46, 125, 50, 0.9) 0%, 
+        rgba(76, 175, 80, 0.8) 30%, 
+        rgba(129, 199, 132, 0.7) 70%, 
+        transparent 100%);
+      border-radius: 2px 2px 0 0;
+      transform-origin: bottom center;
+      animation: grass-sway ease-in-out infinite;
+    }
+
+    .grass-blade::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 8px;
+      background: linear-gradient(0deg, 
+        rgba(76, 175, 80, 0.9) 0%, 
+        rgba(129, 199, 132, 0.7) 100%);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    /* Individual grass blade animations */
+    .grass-blade-1 { left: 2%; height: 80px; animation-duration: 2.3s; animation-delay: 0.1s; }
+    .grass-blade-2 { left: 5%; height: 95px; animation-duration: 2.1s; animation-delay: 0.3s; }
+    .grass-blade-3 { left: 8%; height: 70px; animation-duration: 2.4s; animation-delay: 0.5s; }
+    .grass-blade-4 { left: 12%; height: 110px; animation-duration: 2.0s; animation-delay: 0.2s; }
+    .grass-blade-5 { left: 16%; height: 85px; animation-duration: 2.2s; animation-delay: 0.4s; }
+    .grass-blade-6 { left: 20%; height: 100px; animation-duration: 2.5s; animation-delay: 0.6s; }
+    .grass-blade-7 { left: 25%; height: 75px; animation-duration: 2.1s; animation-delay: 0.1s; }
+    .grass-blade-8 { left: 30%; height: 90px; animation-duration: 2.3s; animation-delay: 0.3s; }
+    .grass-blade-9 { left: 35%; height: 105px; animation-duration: 2.0s; animation-delay: 0.5s; }
+    .grass-blade-10 { left: 40%; height: 80px; animation-duration: 2.4s; animation-delay: 0.2s; }
+    .grass-blade-11 { left: 45%; height: 95px; animation-duration: 2.2s; animation-delay: 0.4s; }
+    .grass-blade-12 { left: 50%; height: 70px; animation-duration: 2.5s; animation-delay: 0.6s; }
+    .grass-blade-13 { left: 55%; height: 110px; animation-duration: 2.1s; animation-delay: 0.1s; }
+    .grass-blade-14 { left: 60%; height: 85px; animation-duration: 2.3s; animation-delay: 0.3s; }
+    .grass-blade-15 { left: 65%; height: 100px; animation-duration: 2.0s; animation-delay: 0.5s; }
+    .grass-blade-16 { left: 70%; height: 75px; animation-duration: 2.4s; animation-delay: 0.2s; }
+    .grass-blade-17 { left: 75%; height: 90px; animation-duration: 2.2s; animation-delay: 0.4s; }
+    .grass-blade-18 { left: 80%; height: 105px; animation-duration: 2.5s; animation-delay: 0.6s; }
+    .grass-blade-19 { left: 85%; height: 80px; animation-duration: 2.1s; animation-delay: 0.1s; }
+    .grass-blade-20 { left: 90%; height: 95px; animation-duration: 2.3s; animation-delay: 0.3s; }
+    .grass-blade-21 { left: 94%; height: 70px; animation-duration: 2.0s; animation-delay: 0.5s; }
+    .grass-blade-22 { left: 98%; height: 110px; animation-duration: 2.4s; animation-delay: 0.2s; }
+
+    @keyframes grass-sway {
+      0%, 100% {
+        transform: rotate(-3deg);
+      }
+      50% {
+        transform: rotate(3deg);
+      }
+    }
+
+    /* Additional grass details */
+    .grass-details {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .grass-clump {
+      position: absolute;
+      bottom: 0;
+      width: 30px;
+      height: 40px;
+      background: radial-gradient(ellipse at bottom, 
+        rgba(76, 175, 80, 0.8) 0%, 
+        rgba(56, 142, 60, 0.9) 70%);
+      border-radius: 50% 50% 0 0;
+      opacity: 0.7;
+    }
+
+    .grass-clump-1 { left: 10%; animation: clump-sway 3s ease-in-out infinite; }
+    .grass-clump-2 { left: 30%; animation: clump-sway 3.5s ease-in-out infinite 0.5s; }
+    .grass-clump-3 { left: 50%; animation: clump-sway 4s ease-in-out infinite 1s; }
+    .grass-clump-4 { left: 70%; animation: clump-sway 3.2s ease-in-out infinite 0.8s; }
+    .grass-clump-5 { left: 90%; animation: clump-sway 3.8s ease-in-out infinite 1.2s; }
+
+    @keyframes clump-sway {
+      0%, 100% {
+        transform: translateX(-2px) skew(-1deg);
+      }
+      50% {
+        transform: translateX(2px) skew(1deg);
+      }
+    }
   </style>
 </head>
 <body class="bg-background-color">
   <div class="relative flex min-h-[100dvh] flex-col overflow-hidden bg-gradient-sky">
-    <img
-      alt="Illustrated background with clouds and a sun"
-      class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-multiply"
-      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBZosK5yrkFuj2J-emFjvaCRU_qUA3XULX2ULgPOGDv_E4Kn1U3bWJps-Bs5Zj-wS98HHF_BoeC-InCEVzxw7492OByNTOIVsISG-TGaTYwuPK3VVCCIDywPwa6b0upEYsUVSpLxOfWRyNuBRyerhTXtqSei0j39Vdy2oYGZAcISBXbOX1QpE-6TCzGrNZ0SY7Aw9vwvMFDOPeUkk79rhKJn0m7zPiuuFZ-wdGi2_vDUQVFkEZThG_T9-NXcKo064qXfYznf6aS3g"
-    />
+    <!-- Enhanced Sky Background -->
+    <div class="sky-gradient"></div>
+    
+    <!-- Sun -->
+    <div class="sun"></div>
+    
+    <!-- Enhanced Cloud Container with Realistic Clouds -->
+    <div class="cloud-container">
+      <!-- Original 6 clouds -->
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+      <div class="cloud cloud-4"></div>
+      <div class="cloud cloud-5"></div>
+      <div class="cloud cloud-6"></div>
+      
+      <!-- Additional 5 clouds starting at different positions -->
+      <div class="cloud cloud-7"></div>
+      <div class="cloud cloud-8"></div>
+      <div class="cloud cloud-9"></div>
+      <div class="cloud cloud-10"></div>
+      <div class="cloud cloud-11"></div>
+    </div>
+
+    <!-- Realistic Grass -->
+    <div class="grass-container">
+      <div class="grass-layer"></div>
+      <div class="grass-blades">
+        <div class="grass-blade grass-blade-1"></div>
+        <div class="grass-blade grass-blade-2"></div>
+        <div class="grass-blade grass-blade-3"></div>
+        <div class="grass-blade grass-blade-4"></div>
+        <div class="grass-blade grass-blade-5"></div>
+        <div class="grass-blade grass-blade-6"></div>
+        <div class="grass-blade grass-blade-7"></div>
+        <div class="grass-blade grass-blade-8"></div>
+        <div class="grass-blade grass-blade-9"></div>
+        <div class="grass-blade grass-blade-10"></div>
+        <div class="grass-blade grass-blade-11"></div>
+        <div class="grass-blade grass-blade-12"></div>
+        <div class="grass-blade grass-blade-13"></div>
+        <div class="grass-blade grass-blade-14"></div>
+        <div class="grass-blade grass-blade-15"></div>
+        <div class="grass-blade grass-blade-16"></div>
+        <div class="grass-blade grass-blade-17"></div>
+        <div class="grass-blade grass-blade-18"></div>
+        <div class="grass-blade grass-blade-19"></div>
+        <div class="grass-blade grass-blade-20"></div>
+        <div class="grass-blade grass-blade-21"></div>
+        <div class="grass-blade grass-blade-22"></div>
+      </div>
+      <div class="grass-details">
+        <div class="grass-clump grass-clump-1"></div>
+        <div class="grass-clump grass-clump-2"></div>
+        <div class="grass-clump grass-clump-3"></div>
+        <div class="grass-clump grass-clump-4"></div>
+        <div class="grass-clump grass-clump-5"></div>
+      </div>
+    </div>
     
     <div class="relative z-10 flex grow flex-col items-center justify-center p-4">
       <!-- Home Screen -->
