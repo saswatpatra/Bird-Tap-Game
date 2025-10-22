@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Bird Tap Game - The Flying Bird Game</title>
+  <title>Bird Tap Game</title>
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -370,16 +370,22 @@
       z-index: 0;
     }
 
-    /* Realistic Grass Styles */
+    /* Realistic Grass Styles - Reduced height for mobile */
     .grass-container {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 120px;
+      height: 100px; /* Reduced from 120px */
       z-index: 2;
       pointer-events: none;
       overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .grass-container {
+        height: 120px; /* Original height for tablets and larger */
+      }
     }
 
     .grass-layer {
@@ -387,28 +393,37 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 120px;
-      background: linear-gradient(0deg, 
-        #2E7D32 0%, 
-        #388E3C 15%, 
-        #4CAF50 30%, 
-        #66BB6A 50%, 
-        #81C784 70%, 
-        #A5D6A7 90%);
+      height: 100px; /* Reduced from 120px */
+      background: linear-gradient(0deg,
+        #1b5e20 0%,
+        #2e7d32 10%,
+        #388e3c 25%,
+        #43a047 40%,
+        #4caf50 60%,
+        #66bb6a 80%,
+        #81c784 95%,
+        #a5d6a7 100%
+      );
       clip-path: polygon(
         0% 100%, 
-        2% 85%, 4% 92%, 6% 78%, 8% 95%, 
-        10% 82%, 12% 88%, 14% 75%, 16% 90%, 18% 80%,
-        20% 85%, 22% 70%, 24% 88%, 26% 78%, 28% 92%,
-        30% 82%, 32% 85%, 34% 72%, 36% 89%, 38% 79%,
-        40% 86%, 42% 74%, 44% 91%, 46% 81%, 48% 87%,
-        50% 76%, 52% 93%, 54% 83%, 56% 89%, 58% 77%,
-        60% 84%, 62% 71%, 64% 86%, 66% 79%, 68% 94%,
-        70% 82%, 72% 88%, 74% 75%, 76% 91%, 78% 81%,
-        80% 87%, 82% 73%, 84% 90%, 86% 80%, 88% 95%,
-        90% 83%, 92% 89%, 94% 76%, 96% 92%, 98% 82%,
+        1.5% 88%, 3.5% 93%, 5.5% 80%, 7.5% 96%, 
+        9.5% 83%, 11.5% 89%, 13.5% 76%, 15.5% 92%, 17.5% 81%,
+        19.5% 86%, 21.5% 72%, 23.5% 89%, 25.5% 79%, 27.5% 94%,
+        29.5% 83%, 31.5% 87%, 33.5% 74%, 35.5% 91%, 37.5% 80%,
+        39.5% 88%, 41.5% 76%, 43.5% 93%, 45.5% 82%, 47.5% 89%,
+        49.5% 78%, 51.5% 95%, 53.5% 84%, 55.5% 90%, 57.5% 79%,
+        59.5% 86%, 61.5% 73%, 63.5% 88%, 65.5% 80%, 67.5% 96%,
+        69.5% 83%, 71.5% 89%, 73.5% 77%, 75.5% 93%, 77.5% 82%,
+        79.5% 88%, 81.5% 75%, 83.5% 92%, 85.5% 81%, 87.5% 97%,
+        89.5% 84%, 91.5% 90%, 93.5% 78%, 95.5% 94%, 97.5% 83%,
         100% 100%
       );
+    }
+
+    @media (min-width: 768px) {
+      .grass-layer {
+        height: 120px; /* Original height for tablets and larger */
+      }
     }
 
     .grass-blades {
@@ -416,70 +431,121 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 150px;
+      height: 130px; /* Reduced from 150px */
       z-index: 3;
+    }
+
+    @media (min-width: 768px) {
+      .grass-blades {
+        height: 150px; /* Original height for tablets and larger */
+      }
     }
 
     .grass-blade {
       position: absolute;
       bottom: 0;
-      width: 4px;
-      background: linear-gradient(0deg, 
-        rgba(46, 125, 50, 0.9) 0%, 
-        rgba(76, 175, 80, 0.8) 30%, 
-        rgba(129, 199, 132, 0.7) 70%, 
-        transparent 100%);
+      width: 3px;
       border-radius: 2px 2px 0 0;
       transform-origin: bottom center;
       animation: grass-sway ease-in-out infinite;
+      background: linear-gradient(to top,
+        rgba(27, 94, 32, 0.95),
+        rgba(76, 175, 80, 0.85) 30%,
+        rgba(129, 199, 132, 0.6) 70%,
+        transparent 100%
+      );
+      box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.05);
     }
 
     .grass-blade::before {
       content: '';
       position: absolute;
-      top: -8px;
+      top: -6px;
       left: 50%;
       transform: translateX(-50%);
-      width: 6px;
-      height: 8px;
-      background: linear-gradient(0deg, 
-        rgba(76, 175, 80, 0.9) 0%, 
-        rgba(129, 199, 132, 0.7) 100%);
+      width: 5px;
+      height: 6px;
+      background: linear-gradient(to top,
+        rgba(76, 175, 80, 0.9),
+        rgba(129, 199, 132, 0.7) 80%,
+        transparent
+      );
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     }
 
-    /* Individual grass blade animations */
-    .grass-blade-1 { left: 2%; height: 80px; animation-duration: 2.3s; animation-delay: 0.1s; }
-    .grass-blade-2 { left: 5%; height: 95px; animation-duration: 2.1s; animation-delay: 0.3s; }
-    .grass-blade-3 { left: 8%; height: 70px; animation-duration: 2.4s; animation-delay: 0.5s; }
-    .grass-blade-4 { left: 12%; height: 110px; animation-duration: 2.0s; animation-delay: 0.2s; }
-    .grass-blade-5 { left: 16%; height: 85px; animation-duration: 2.2s; animation-delay: 0.4s; }
-    .grass-blade-6 { left: 20%; height: 100px; animation-duration: 2.5s; animation-delay: 0.6s; }
-    .grass-blade-7 { left: 25%; height: 75px; animation-duration: 2.1s; animation-delay: 0.1s; }
-    .grass-blade-8 { left: 30%; height: 90px; animation-duration: 2.3s; animation-delay: 0.3s; }
-    .grass-blade-9 { left: 35%; height: 105px; animation-duration: 2.0s; animation-delay: 0.5s; }
-    .grass-blade-10 { left: 40%; height: 80px; animation-duration: 2.4s; animation-delay: 0.2s; }
-    .grass-blade-11 { left: 45%; height: 95px; animation-duration: 2.2s; animation-delay: 0.4s; }
-    .grass-blade-12 { left: 50%; height: 70px; animation-duration: 2.5s; animation-delay: 0.6s; }
-    .grass-blade-13 { left: 55%; height: 110px; animation-duration: 2.1s; animation-delay: 0.1s; }
-    .grass-blade-14 { left: 60%; height: 85px; animation-duration: 2.3s; animation-delay: 0.3s; }
-    .grass-blade-15 { left: 65%; height: 100px; animation-duration: 2.0s; animation-delay: 0.5s; }
-    .grass-blade-16 { left: 70%; height: 75px; animation-duration: 2.4s; animation-delay: 0.2s; }
-    .grass-blade-17 { left: 75%; height: 90px; animation-duration: 2.2s; animation-delay: 0.4s; }
-    .grass-blade-18 { left: 80%; height: 105px; animation-duration: 2.5s; animation-delay: 0.6s; }
-    .grass-blade-19 { left: 85%; height: 80px; animation-duration: 2.1s; animation-delay: 0.1s; }
-    .grass-blade-20 { left: 90%; height: 95px; animation-duration: 2.3s; animation-delay: 0.3s; }
-    .grass-blade-21 { left: 94%; height: 70px; animation-duration: 2.0s; animation-delay: 0.5s; }
-    .grass-blade-22 { left: 98%; height: 110px; animation-duration: 2.4s; animation-delay: 0.2s; }
+    /* Individual grass blade animations - more natural variation */
+    .grass-blade-1 { left: 2%; height: 65px; animation-duration: 2.8s; animation-delay: 0.1s; animation-name: grass-sway-1; }
+    .grass-blade-2 { left: 5%; height: 80px; animation-duration: 2.5s; animation-delay: 0.4s; animation-name: grass-sway-2; }
+    .grass-blade-3 { left: 8%; height: 55px; animation-duration: 3.1s; animation-delay: 0.7s; animation-name: grass-sway-3; }
+    .grass-blade-4 { left: 12%; height: 95px; animation-duration: 2.3s; animation-delay: 0.2s; animation-name: grass-sway-4; }
+    .grass-blade-5 { left: 16%; height: 70px; animation-duration: 2.9s; animation-delay: 0.5s; animation-name: grass-sway-5; }
+    .grass-blade-6 { left: 20%; height: 85px; animation-duration: 2.6s; animation-delay: 0.8s; animation-name: grass-sway-6; }
+    .grass-blade-7 { left: 25%; height: 60px; animation-duration: 3.0s; animation-delay: 0.3s; animation-name: grass-sway-7; }
+    .grass-blade-8 { left: 30%; height: 75px; animation-duration: 2.4s; animation-delay: 0.6s; animation-name: grass-sway-8; }
+    .grass-blade-9 { left: 35%; height: 90px; animation-duration: 2.7s; animation-delay: 0.9s; animation-name: grass-sway-9; }
+    .grass-blade-10 { left: 40%; height: 65px; animation-duration: 3.2s; animation-delay: 0.1s; animation-name: grass-sway-10; }
+    .grass-blade-11 { left: 45%; height: 80px; animation-duration: 2.5s; animation-delay: 0.4s; animation-name: grass-sway-11; }
+    .grass-blade-12 { left: 50%; height: 55px; animation-duration: 2.8s; animation-delay: 0.7s; animation-name: grass-sway-12; }
+    .grass-blade-13 { left: 55%; height: 95px; animation-duration: 2.6s; animation-delay: 0.2s; animation-name: grass-sway-13; }
+    .grass-blade-14 { left: 60%; height: 70px; animation-duration: 3.0s; animation-delay: 0.5s; animation-name: grass-sway-14; }
+    .grass-blade-15 { left: 65%; height: 85px; animation-duration: 2.4s; animation-delay: 0.8s; animation-name: grass-sway-15; }
+    .grass-blade-16 { left: 70%; height: 60px; animation-duration: 2.9s; animation-delay: 0.3s; animation-name: grass-sway-16; }
+    .grass-blade-17 { left: 75%; height: 75px; animation-duration: 2.7s; animation-delay: 0.6s; animation-name: grass-sway-17; }
+    .grass-blade-18 { left: 80%; height: 90px; animation-duration: 3.1s; animation-delay: 0.9s; animation-name: grass-sway-18; }
+    .grass-blade-19 { left: 85%; height: 65px; animation-duration: 2.5s; animation-delay: 0.1s; animation-name: grass-sway-19; }
+    .grass-blade-20 { left: 90%; height: 80px; animation-duration: 2.8s; animation-delay: 0.4s; animation-name: grass-sway-20; }
+    .grass-blade-21 { left: 94%; height: 55px; animation-duration: 2.6s; animation-delay: 0.7s; animation-name: grass-sway-21; }
+    .grass-blade-22 { left: 98%; height: 95px; animation-duration: 3.0s; animation-delay: 0.2s; animation-name: grass-sway-22; }
 
-    @keyframes grass-sway {
-      0%, 100% {
-        transform: rotate(-3deg);
-      }
-      50% {
-        transform: rotate(3deg);
-      }
+    @media (min-width: 768px) {
+      /* Original heights for tablets and larger */
+      .grass-blade-1 { height: 80px; }
+      .grass-blade-2 { height: 95px; }
+      .grass-blade-3 { height: 70px; }
+      .grass-blade-4 { height: 110px; }
+      .grass-blade-5 { height: 85px; }
+      .grass-blade-6 { height: 100px; }
+      .grass-blade-7 { height: 75px; }
+      .grass-blade-8 { height: 90px; }
+      .grass-blade-9 { height: 105px; }
+      .grass-blade-10 { height: 80px; }
+      .grass-blade-11 { height: 95px; }
+      .grass-blade-12 { height: 70px; }
+      .grass-blade-13 { height: 110px; }
+      .grass-blade-14 { height: 85px; }
+      .grass-blade-15 { height: 100px; }
+      .grass-blade-16 { height: 75px; }
+      .grass-blade-17 { height: 90px; }
+      .grass-blade-18 { height: 105px; }
+      .grass-blade-19 { height: 80px; }
+      .grass-blade-20 { height: 95px; }
+      .grass-blade-21 { height: 70px; }
+      .grass-blade-22 { height: 110px; }
     }
+
+    /* Unique sway animations for more organic motion */
+    @keyframes grass-sway-1 { 0%, 100% { transform: rotate(-2.5deg) scaleX(1); } 50% { transform: rotate(2deg) scaleX(1.02); } }
+    @keyframes grass-sway-2 { 0%, 100% { transform: rotate(-3deg) scaleX(1); } 50% { transform: rotate(2.5deg) scaleX(1.03); } }
+    @keyframes grass-sway-3 { 0%, 100% { transform: rotate(-2deg) scaleX(1); } 50% { transform: rotate(1.8deg) scaleX(1.01); } }
+    @keyframes grass-sway-4 { 0%, 100% { transform: rotate(-3.2deg) scaleX(1); } 50% { transform: rotate(2.8deg) scaleX(1.04); } }
+    @keyframes grass-sway-5 { 0%, 100% { transform: rotate(-2.7deg) scaleX(1); } 50% { transform: rotate(2.2deg) scaleX(1.02); } }
+    @keyframes grass-sway-6 { 0%, 100% { transform: rotate(-3.1deg) scaleX(1); } 50% { transform: rotate(2.6deg) scaleX(1.03); } }
+    @keyframes grass-sway-7 { 0%, 100% { transform: rotate(-2.3deg) scaleX(1); } 50% { transform: rotate(1.9deg) scaleX(1.01); } }
+    @keyframes grass-sway-8 { 0%, 100% { transform: rotate(-2.9deg) scaleX(1); } 50% { transform: rotate(2.4deg) scaleX(1.02); } }
+    @keyframes grass-sway-9 { 0%, 100% { transform: rotate(-3.3deg) scaleX(1); } 50% { transform: rotate(2.9deg) scaleX(1.04); } }
+    @keyframes grass-sway-10 { 0%, 100% { transform: rotate(-2.4deg) scaleX(1); } 50% { transform: rotate(2.1deg) scaleX(1.02); } }
+    @keyframes grass-sway-11 { 0%, 100% { transform: rotate(-2.8deg) scaleX(1); } 50% { transform: rotate(2.3deg) scaleX(1.03); } }
+    @keyframes grass-sway-12 { 0%, 100% { transform: rotate(-2.1deg) scaleX(1); } 50% { transform: rotate(1.7deg) scaleX(1.01); } }
+    @keyframes grass-sway-13 { 0%, 100% { transform: rotate(-3.4deg) scaleX(1); } 50% { transform: rotate(3deg) scaleX(1.05); } }
+    @keyframes grass-sway-14 { 0%, 100% { transform: rotate(-2.6deg) scaleX(1); } 50% { transform: rotate(2.2deg) scaleX(1.02); } }
+    @keyframes grass-sway-15 { 0%, 100% { transform: rotate(-3deg) scaleX(1); } 50% { transform: rotate(2.5deg) scaleX(1.03); } }
+    @keyframes grass-sway-16 { 0%, 100% { transform: rotate(-2.2deg) scaleX(1); } 50% { transform: rotate(1.8deg) scaleX(1.01); } }
+    @keyframes grass-sway-17 { 0%, 100% { transform: rotate(-2.7deg) scaleX(1); } 50% { transform: rotate(2.3deg) scaleX(1.02); } }
+    @keyframes grass-sway-18 { 0%, 100% { transform: rotate(-3.2deg) scaleX(1); } 50% { transform: rotate(2.8deg) scaleX(1.04); } }
+    @keyframes grass-sway-19 { 0%, 100% { transform: rotate(-2.5deg) scaleX(1); } 50% { transform: rotate(2deg) scaleX(1.02); } }
+    @keyframes grass-sway-20 { 0%, 100% { transform: rotate(-2.9deg) scaleX(1); } 50% { transform: rotate(2.4deg) scaleX(1.03); } }
+    @keyframes grass-sway-21 { 0%, 100% { transform: rotate(-2deg) scaleX(1); } 50% { transform: rotate(1.6deg) scaleX(1.01); } }
+    @keyframes grass-sway-22 { 0%, 100% { transform: rotate(-3.3deg) scaleX(1); } 50% { transform: rotate(2.9deg) scaleX(1.05); } }
 
     /* Additional grass details */
     .grass-details {
@@ -487,35 +553,50 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 120px;
+      height: 100px; /* Reduced from 120px */
       z-index: 4;
       pointer-events: none;
+    }
+
+    @media (min-width: 768px) {
+      .grass-details {
+        height: 120px; /* Original height for tablets and larger */
+      }
     }
 
     .grass-clump {
       position: absolute;
       bottom: 0;
-      width: 30px;
-      height: 40px;
-      background: radial-gradient(ellipse at bottom, 
-        rgba(76, 175, 80, 0.8) 0%, 
-        rgba(56, 142, 60, 0.9) 70%);
+      width: 32px;
+      height: 38px;
+      background: radial-gradient(ellipse at bottom,
+        rgba(46, 125, 50, 0.95) 0%,
+        rgba(27, 94, 32, 0.9) 60%,
+        transparent 100%
+      );
       border-radius: 50% 50% 0 0;
-      opacity: 0.7;
+      opacity: 0.75;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .grass-clump-1 { left: 10%; animation: clump-sway 3s ease-in-out infinite; }
-    .grass-clump-2 { left: 30%; animation: clump-sway 3.5s ease-in-out infinite 0.5s; }
-    .grass-clump-3 { left: 50%; animation: clump-sway 4s ease-in-out infinite 1s; }
-    .grass-clump-4 { left: 70%; animation: clump-sway 3.2s ease-in-out infinite 0.8s; }
-    .grass-clump-5 { left: 90%; animation: clump-sway 3.8s ease-in-out infinite 1.2s; }
+    @media (min-width: 768px) {
+      .grass-clump {
+        height: 42px;
+      }
+    }
+
+    .grass-clump-1 { left: 10%; animation: clump-sway 3.2s ease-in-out infinite; }
+    .grass-clump-2 { left: 30%; animation: clump-sway 3.7s ease-in-out infinite 0.6s; }
+    .grass-clump-3 { left: 50%; animation: clump-sway 4.1s ease-in-out infinite 1.1s; }
+    .grass-clump-4 { left: 70%; animation: clump-sway 3.4s ease-in-out infinite 0.9s; }
+    .grass-clump-5 { left: 90%; animation: clump-sway 3.9s ease-in-out infinite 1.3s; }
 
     @keyframes clump-sway {
       0%, 100% {
-        transform: translateX(-2px) skew(-1deg);
+        transform: translateX(-3px) skew(-1.2deg) scaleY(1);
       }
       50% {
-        transform: translateX(2px) skew(1deg);
+        transform: translateX(3px) skew(1.2deg) scaleY(1.02);
       }
     }
   </style>
@@ -603,6 +684,14 @@
               </svg>
               How To Play
             </button>
+          </div>
+        </div>
+        
+        <!-- Added version and creator text below the home screen container -->
+        <div class="w-full max-w-xl md:max-w-2xl lg:max-w-3xl flex justify-between items-center mt-4 px-4">
+          <div class="text-sm text-gray-600 font-medium">v2.0</div>
+          <div class="text-sm text-gray-600 font-medium">
+            With ❤️ <a href="https://saswatpatra.carrd.co/" target="_blank" class="text-[var(--primary-color)] hover:text-green-600 transition-colors duration-200 underline">Saswat Patra</a>
           </div>
         </div>
       </main>
