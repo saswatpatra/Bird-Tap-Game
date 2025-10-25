@@ -376,7 +376,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 100px; /* Reduced from 120px */
+      height: 100px;
       z-index: 2;
       pointer-events: none;
       overflow: hidden;
@@ -384,7 +384,7 @@
 
     @media (min-width: 768px) {
       .grass-container {
-        height: 120px; /* Original height for tablets and larger */
+        height: 120px;
       }
     }
 
@@ -393,7 +393,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 100px; /* Reduced from 120px */
+      height: 100px;
       background: linear-gradient(0deg,
         #1b5e20 0%,
         #2e7d32 10%,
@@ -422,7 +422,7 @@
 
     @media (min-width: 768px) {
       .grass-layer {
-        height: 120px; /* Original height for tablets and larger */
+        height: 120px;
       }
     }
 
@@ -431,13 +431,13 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 130px; /* Reduced from 150px */
+      height: 130px;
       z-index: 3;
     }
 
     @media (min-width: 768px) {
       .grass-blades {
-        height: 150px; /* Original height for tablets and larger */
+        height: 150px;
       }
     }
 
@@ -547,57 +547,36 @@
     @keyframes grass-sway-21 { 0%, 100% { transform: rotate(-2deg) scaleX(1); } 50% { transform: rotate(1.6deg) scaleX(1.01); } }
     @keyframes grass-sway-22 { 0%, 100% { transform: rotate(-3.3deg) scaleX(1); } 50% { transform: rotate(2.9deg) scaleX(1.05); } }
 
-    /* Additional grass details */
-    .grass-details {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 100px; /* Reduced from 120px */
-      z-index: 4;
-      pointer-events: none;
-    }
-
-    @media (min-width: 768px) {
-      .grass-details {
-        height: 120px; /* Original height for tablets and larger */
+    /* Confetti Animation */
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
       }
     }
 
-    .grass-clump {
-      position: absolute;
-      bottom: 0;
-      width: 32px;
-      height: 38px;
-      background: radial-gradient(ellipse at bottom,
-        rgba(46, 125, 50, 0.95) 0%,
-        rgba(27, 94, 32, 0.9) 60%,
-        transparent 100%
-      );
-      border-radius: 50% 50% 0 0;
-      opacity: 0.75;
-      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    /* Keyboard hint */
+    .keyboard-hint {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      z-index: 100;
+      opacity: 0;
+      animation: fadeInOut 3s ease-in-out;
     }
 
-    @media (min-width: 768px) {
-      .grass-clump {
-        height: 42px;
-      }
-    }
-
-    .grass-clump-1 { left: 10%; animation: clump-sway 3.2s ease-in-out infinite; }
-    .grass-clump-2 { left: 30%; animation: clump-sway 3.7s ease-in-out infinite 0.6s; }
-    .grass-clump-3 { left: 50%; animation: clump-sway 4.1s ease-in-out infinite 1.1s; }
-    .grass-clump-4 { left: 70%; animation: clump-sway 3.4s ease-in-out infinite 0.9s; }
-    .grass-clump-5 { left: 90%; animation: clump-sway 3.9s ease-in-out infinite 1.3s; }
-
-    @keyframes clump-sway {
-      0%, 100% {
-        transform: translateX(-3px) skew(-1.2deg) scaleY(1);
-      }
-      50% {
-        transform: translateX(3px) skew(1.2deg) scaleY(1.02);
-      }
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      10%, 90% { opacity: 1; }
     }
   </style>
 </head>
@@ -654,13 +633,6 @@
         <div class="grass-blade grass-blade-21"></div>
         <div class="grass-blade grass-blade-22"></div>
       </div>
-      <div class="grass-details">
-        <div class="grass-clump grass-clump-1"></div>
-        <div class="grass-clump grass-clump-2"></div>
-        <div class="grass-clump grass-clump-3"></div>
-        <div class="grass-clump grass-clump-4"></div>
-        <div class="grass-clump grass-clump-5"></div>
-      </div>
     </div>
     
     <div class="relative z-10 flex grow flex-col items-center justify-center p-4">
@@ -689,7 +661,7 @@
         
         <!-- Added version and creator text below the home screen container -->
         <div class="w-full max-w-xl md:max-w-2xl lg:max-w-3xl flex justify-between items-center mt-4 px-4">
-          <div class="text-sm text-gray-600 font-medium">v2.0</div>
+          <div class="text-sm text-gray-600 font-medium">v2</div>
           <div class="text-sm text-gray-600 font-medium">
             With ❤️ <a href="https://saswatpatra.carrd.co/" target="_blank" class="text-[var(--primary-color)] hover:text-green-600 transition-colors duration-200 underline">Saswat Patra</a>
           </div>
@@ -706,16 +678,16 @@
       <!-- Game Screen - Improved container sizing -->
       <main id="game-screen" class="hidden flex flex-col items-center justify-center text-center w-full max-w-xl md:max-w-2xl lg:max-w-3xl">
         <div class="bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg flex flex-col items-center gap-5 w-full">
-          <div id="word-display" class="interactive font-brand text-3xl sm:text-4xl md:text-5xl text-gray-800 min-h-[80px] md:min-h-[100px] flex items-center justify-center px-4 py-4 rounded-xl bg-white/50 w-full break-words">
+          <div id="word-display" class="interactive font-brand text-3xl sm:text-4xl md:text-5xl text-gray-800 min-h-[80px] md:min-h-[100px] flex items-center justify-center px-4 py-4 rounded-xl bg-white/50 w-full break-words" aria-live="polite">
             <!-- Word appears here -->
           </div>
 
           <div class="flex justify-between w-full max-w-md md:max-w-lg text-sm sm:text-base md:text-lg font-semibold text-gray-700">
-            <div>Score: <span id="score" class="transition-all duration-300">0</span></div>
-            <div>Time: <span id="timer" class="transition-all duration-300">1.0</span>s</div>
+            <div>Score: <span id="score" class="transition-all duration-300" aria-live="polite">0</span></div>
+            <div>Time: <span id="timer" class="transition-all duration-300" aria-live="polite">1.0</span>s</div>
           </div>
 
-          <button id="bird-btn" class="interactive btn-glow flex items-center justify-center h-14 sm:h-16 w-full max-w-xs md:max-w-sm rounded-full bg-[var(--primary-color)] px-6 text-lg sm:text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-green-600 hover:-translate-y-1 hover:shadow-2xl transform mt-2">
+          <button id="bird-btn" class="interactive btn-glow flex items-center justify-center h-14 sm:h-16 w-full max-w-xs md:max-w-sm rounded-full bg-[var(--primary-color)] px-6 text-lg sm:text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-green-600 hover:-translate-y-1 hover:shadow-2xl transform mt-2" aria-label="Press Space or click to indicate bird">
             Bird!
           </button>
 
@@ -740,14 +712,14 @@
               Restart Game
             </button>
             <button id="reset-btn" class="interactive btn-glow-amber flex items-center justify-center gap-3 h-14 sm:h-16 w-full max-w-xs md:max-w-sm rounded-full bg-amber-500 px-6 text-lg sm:text-xl md:text-2xl font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:bg-amber-600 hover:-translate-y-1 hover:shadow-2xl transform">
-              <svg class="h-7 w-7 sm:h-8 sm:w-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a.75.75 0 001.06 0l3.182-3.183m-4.243-2.122a.75.75 0 011.06 0l3.182 3.182m-4.243-2.122l3.181-3.181m-3.181 3.181L2.985 7.356" stroke-linecap="round" stroke-linejoin="round"></path>
+              <svg class="h-7 w-7 sm:h-8 sm:w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
               </svg>
               Reset Highscore
             </button>
             <button id="menu-btn" class="interactive flex items-center justify-center gap-3 h-14 sm:h-16 w-full max-w-xs md:max-w-sm rounded-full bg-white/80 px-6 text-lg sm:text-xl md:text-2xl font-bold text-gray-700 shadow-lg transition-all duration-300 ease-in-out hover:bg-white hover:-translate-y-1 hover:shadow-2xl transform backdrop-blur-sm border border-gray-200">
               <svg class="h-6 w-6 sm:h-7 sm:w-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0116.5 19.875V4.125z" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
               Main Menu
             </button>
@@ -760,7 +732,7 @@
   <!-- Improved How To Play Modal -->
   <div id="how-to-play-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
     <div class="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl w-full max-w-md md:max-w-lg p-6 md:p-7">
-      <button id="close-how-to-play" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors">
+      <button id="close-how-to-play" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors" aria-label="Close modal">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
@@ -770,7 +742,7 @@
 
       <div class="space-y-3 text-gray-700 text-sm md:text-base max-w-prose mx-auto">
         <p>✅ A word will appear on screen.</p>
-        <p>🐦 If it's a <strong>bird</strong> (e.g., <em>Sparrow</em>, <em>Eagle</em>), tap the <strong>"Bird!"</strong> button quickly.</p>
+        <p>🐦 If it's a <strong>bird</strong> (e.g., <em>Sparrow</em>, <em>Eagle</em>), tap the <strong>"Bird!"</strong> button or press <strong>Space</strong> quickly.</p>
         <p>🚫 If it's <strong>not a bird</strong> (e.g., <em>Tiger</em>, <em>Car</em>), <strong>do nothing</strong>.</p>
         <p>⏱️ You have only <strong>1 second</strong> to react to bird words!</p>
         <div class="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -809,326 +781,645 @@
     </div>
   </div>
 
-  <!-- Audio elements -->
-  <audio id="tick-sound" preload="auto">
-    <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
-  </audio>
-
-  <audio id="confetti-sound" preload="auto">
-    <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
-  </audio>
-
-  <audio id="countdown-sound" preload="auto">
-    <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
-  </audio>
-
   <script>
-    // DOM Elements
-    const homeScreen = document.getElementById('home-screen');
-    const countdownScreen = document.getElementById('countdown-screen');
-    const gameScreen = document.getElementById('game-screen');
-    const endScreen = document.getElementById('end-screen');
-    const startBtn = document.getElementById('start-btn');
-    const howToPlayBtn = document.getElementById('how-to-play-btn');
-    const closeHowToPlayBtn = document.getElementById('close-how-to-play');
-    const gotItBtn = document.getElementById('got-it-btn');
-    const howToPlayModal = document.getElementById('how-to-play-modal');
-    const countdownEl = document.getElementById('countdown');
-    const wordDisplay = document.getElementById('word-display');
-    const scoreEl = document.getElementById('score');
-    const timerEl = document.getElementById('timer');
-    const birdBtn = document.getElementById('bird-btn');
-    const highscoreEl = document.getElementById('highscore');
-    const finalScoreEl = document.getElementById('final-score');
-    const endHighscoreEl = document.getElementById('end-highscore');
-    const restartBtn = document.getElementById('restart-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    const menuBtn = document.getElementById('menu-btn');
-    const tickSound = document.getElementById('tick-sound');
-    const confettiSound = document.getElementById('confetti-sound');
-    const countdownSound = document.getElementById('countdown-sound');
-    const confettiContainer = document.getElementById('confetti-container');
-    const resetFeedback = document.getElementById('reset-feedback');
-    const resetPopup = resetFeedback.querySelector('.rounded-2xl');
+    // ============================================
+    // CONFIGURATION
+    // ============================================
+    const CONFIG = {
+      TIMER_DURATION: 1000, // ms
+      CONFETTI_COUNT: 150,
+      WORD_HISTORY_SIZE: 5,
+      STORAGE_KEY: 'birdGameHighscore',
+      COUNTDOWN_DURATION: 1000, // ms
+      COUNTDOWN_START: 3
+    };
 
-    // Game State
-    let score = 0;
-    let highscore = localStorage.getItem('birdGameHighscore') || 0;
-    let currentWord = '';
-    let isBird = false;
-    let gameActive = false;
-    let wordTimeout = null;
-    let timerInterval = null;
-    let timeLeft = 1.0;
-    let userInteracted = false;
-    let newHighscoreAchieved = false;
-
-    // Word Lists
-    const birdNames = [
-      'Sparrow', 'Crow', 'Pigeon', 'Parrot', 'Eagle', 'Peacock',
-      'Owl', 'Duck', 'Swan', 'Hawk', 'Falcon', 'Vulture',
-      'Kingfisher', 'Woodpecker', 'Mynah', 'Bulbul', 'Robin',
-      'Hummingbird', 'Flamingo', 'Stork'
-    ];
-
-    const nonBirdWords = [
-      'Tiger', 'Lion', 'Elephant', 'Car', 'House', 'Tree',
-      'Computer', 'Phone', 'Book', 'Chair', 'Table', 'Mountain',
-      'River', 'Ocean', 'Sun', 'Moon', 'Star', 'Cloud',
-      'Rain', 'Wind', 'Fire', 'Water', 'Earth', 'Air'
-    ];
-
-    // Initialize highscore
-    highscoreEl.textContent = highscore;
-    endHighscoreEl.textContent = highscore;
-
-    // Event Listeners
-    startBtn.addEventListener('click', () => { userInteracted = true; startGame(); });
-    birdBtn.addEventListener('click', () => { userInteracted = true; handleBirdClick(); });
-    restartBtn.addEventListener('click', () => { userInteracted = true; startGame(); });
-    resetBtn.addEventListener('click', () => { userInteracted = true; resetHighscore(); });
-    menuBtn.addEventListener('click', showHomeScreen);
-    howToPlayBtn.addEventListener('click', () => howToPlayModal.classList.remove('hidden'));
-    closeHowToPlayBtn.addEventListener('click', () => howToPlayModal.classList.add('hidden'));
-    gotItBtn.addEventListener('click', () => {
-      howToPlayModal.classList.add('hidden');
-      showHomeScreen();
-    });
-    howToPlayModal.addEventListener('click', (e) => {
-      if (e.target === howToPlayModal) howToPlayModal.classList.add('hidden');
-    });
-
-    // Confetti Function
-    function createConfetti() {
-      confettiContainer.classList.remove('hidden');
-      confettiContainer.innerHTML = '';
-      
-      // Play confetti sound if user has interacted
-      if (userInteracted) {
-        confettiSound.currentTime = 0;
-        confettiSound.play().catch(() => {});
+    // ============================================
+    // STORAGE MANAGER - Handles localStorage with validation
+    // ============================================
+    class StorageManager {
+      static get(key, defaultValue = 0) {
+        try {
+          const value = localStorage.getItem(key);
+          
+          // Validate the retrieved value
+          if (value === null || value === undefined) {
+            return defaultValue;
+          }
+          
+          const parsed = parseInt(value, 10);
+          
+          // Check if parsing resulted in a valid number
+          if (isNaN(parsed) || !isFinite(parsed) || parsed < 0) {
+            console.warn(`Invalid value in localStorage for key "${key}": ${value}. Using default.`);
+            return defaultValue;
+          }
+          
+          return parsed;
+        } catch (error) {
+          console.error(`Error reading from localStorage (key: ${key}):`, error);
+          return defaultValue;
+        }
       }
 
-      const colors = ['#FFC107', '#4CAF50', '#2196F3', '#E91E63', '#9C27B0', '#FF5722'];
-      const confettiCount = 150;
+      static set(key, value) {
+        try {
+          // Validate input before storing
+          if (typeof value !== 'number' || isNaN(value) || !isFinite(value)) {
+            console.error(`Invalid value to store: ${value}`);
+            return false;
+          }
+          
+          localStorage.setItem(key, value.toString());
+          return true;
+        } catch (error) {
+          // Handle quota exceeded or other storage errors
+          if (error.name === 'QuotaExceededError') {
+            console.error('localStorage quota exceeded');
+          } else {
+            console.error('Error writing to localStorage:', error);
+          }
+          return false;
+        }
+      }
 
-      for (let i = 0; i < confettiCount; i++) {
-        const confetti = document.createElement('div');
-        const size = Math.random() * 10 + 5;
-        const color = colors[Math.floor(Math.random() * colors.length)];
+      static isAvailable() {
+        try {
+          const test = '__storage_test__';
+          localStorage.setItem(test, test);
+          localStorage.removeItem(test);
+          return true;
+        } catch {
+          return false;
+        }
+      }
+    }
+
+    // ============================================
+    // SOUND MANAGER - Handles Web Audio API
+    // ============================================
+    class SoundManager {
+      constructor() {
+        this.audioContext = null;
+        this.isInitialized = false;
+      }
+
+      init() {
+        if (this.isInitialized) return true;
         
-        confetti.style.cssText = `
-          position: absolute;
-          width: ${size}px;
-          height: ${size}px;
-          background-color: ${color};
-          top: -20px;
-          left: ${Math.random() * 100}%;
-          border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-          opacity: ${Math.random() * 0.8 + 0.2};
-          transform: rotate(${Math.random() * 360}deg);
-          animation: confetti-fall ${Math.random() * 3 + 2}s linear forwards;
-        `;
-
-        confettiContainer.appendChild(confetti);
-      }
-
-      // Remove confetti after animation
-      setTimeout(() => {
-        confettiContainer.classList.add('hidden');
-        confettiContainer.innerHTML = '';
-      }, 4000);
-    }
-
-    // Add confetti animation to styles
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes confetti-fall {
-        0% {
-          transform: translateY(0) rotate(0deg);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(100vh) rotate(360deg);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Game Functions
-    function startGame() {
-      score = 0;
-      scoreEl.textContent = score;
-      gameActive = true;
-      newHighscoreAchieved = false;
-      showCountdown();
-    }
-
-    function showCountdown() {
-      homeScreen.classList.add('hidden');
-      countdownScreen.classList.remove('hidden');
-      gameScreen.classList.add('hidden');
-      endScreen.classList.add('hidden');
-
-      let count = 3;
-      countdownEl.textContent = count;
-
-      // Play countdown sound at 50% volume
-      if (userInteracted) {
-        countdownSound.volume = 0.5;
-        countdownSound.currentTime = 0;
-        countdownSound.play().catch(() => {});
-      }
-
-      const countdownInterval = setInterval(() => {
-        count--;
-        if (count > 0) {
-          countdownEl.textContent = count;
-          // Play countdown sound for each number at 50% volume
-          if (userInteracted) {
-            countdownSound.volume = 0.5;
-            countdownSound.currentTime = 0;
-            countdownSound.play().catch(() => {});
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          
+          if (!AudioContext) {
+            console.warn('Web Audio API not supported');
+            return false;
           }
-        } else {
-          clearInterval(countdownInterval);
-          countdownEl.textContent = 'Go!';
-          // Play final "Go!" sound at 50% volume
-          if (userInteracted) {
-            countdownSound.volume = 0.5;
-            countdownSound.currentTime = 0;
-            countdownSound.play().catch(() => {});
+          
+          this.audioContext = new AudioContext();
+          this.isInitialized = true;
+          
+          // Resume context for Safari
+          if (this.audioContext.state === 'suspended') {
+            this.audioContext.resume();
           }
-          setTimeout(() => {
-            countdownScreen.classList.add('hidden');
-            gameScreen.classList.remove('hidden');
-            startWordCycle();
-          }, 500);
+          
+          return true;
+        } catch (error) {
+          console.error('Failed to initialize audio:', error);
+          return false;
         }
-      }, 1000);
+      }
+
+      playCountdown() {
+        if (!this.init()) return;
+        
+        try {
+          const ctx = this.audioContext;
+          const oscillator = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(ctx.destination);
+          
+          oscillator.frequency.value = 600;
+          oscillator.type = 'square';
+          
+          gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+          
+          oscillator.start(ctx.currentTime);
+          oscillator.stop(ctx.currentTime + 0.15);
+        } catch (error) {
+          console.error('Error playing countdown sound:', error);
+        }
+      }
+
+      playConfetti() {
+        if (!this.init()) return;
+        
+        try {
+          const ctx = this.audioContext;
+          
+          for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+              const oscillator = ctx.createOscillator();
+              const gainNode = ctx.createGain();
+              
+              oscillator.connect(gainNode);
+              gainNode.connect(ctx.destination);
+              
+              oscillator.frequency.value = 400 + (i * 200);
+              oscillator.type = 'sine';
+              
+              gainNode.gain.setValueAtTime(0.15, ctx.currentTime);
+              gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+              
+              oscillator.start(ctx.currentTime);
+              oscillator.stop(ctx.currentTime + 0.3);
+            }, i * 100);
+          }
+        } catch (error) {
+          console.error('Error playing confetti sound:', error);
+        }
+      }
     }
 
-    function startWordCycle() {
-      if (!gameActive) return;
+    // ============================================
+    // WORD MANAGER - Prevents word repetition
+    // ============================================
+    class WordManager {
+      constructor(birdWords, nonBirdWords, historySize = CONFIG.WORD_HISTORY_SIZE) {
+        this.birdWords = [...birdWords];
+        this.nonBirdWords = [...nonBirdWords];
+        this.history = [];
+        this.historySize = historySize;
+      }
 
-      clearTimeout(wordTimeout);
-      clearInterval(timerInterval);
-
-      timeLeft = 1.0;
-      timerEl.textContent = timeLeft.toFixed(1);
-      timerEl.classList.remove('text-red-500');
-
-      const isBirdWord = Math.random() > 0.5;
-      const wordList = isBirdWord ? birdNames : nonBirdWords;
-      currentWord = wordList[Math.floor(Math.random() * wordList.length)];
-      isBird = isBirdWord;
-
-      wordDisplay.textContent = currentWord;
-
-      timerInterval = setInterval(() => {
-        timeLeft -= 0.1;
-        timerEl.textContent = timeLeft.toFixed(1);
-
-        // Play subtle tick on every 0.1s if user interacted
-        if (userInteracted && timeLeft > 0.1) {
-          tickSound.currentTime = 0;
-          tickSound.play().catch(() => {});
+      getRandomWord(isBird) {
+        const wordList = isBird ? this.birdWords : this.nonBirdWords;
+        
+        // Filter out words in recent history
+        const availableWords = wordList.filter(word => !this.history.includes(word));
+        
+        // If all words are in history (unlikely), clear history
+        const selectFrom = availableWords.length > 0 ? availableWords : wordList;
+        
+        // Select random word
+        const word = selectFrom[Math.floor(Math.random() * selectFrom.length)];
+        
+        // Add to history
+        this.history.push(word);
+        
+        // Maintain history size
+        if (this.history.length > this.historySize) {
+          this.history.shift();
         }
+        
+        return word;
+      }
 
+      reset() {
+        this.history = [];
+      }
+    }
+
+    // ============================================
+    // UI CONTROLLER - Manages DOM elements
+    // ============================================
+    class UIController {
+      constructor() {
+        this.elements = {
+          homeScreen: document.getElementById('home-screen'),
+          countdownScreen: document.getElementById('countdown-screen'),
+          gameScreen: document.getElementById('game-screen'),
+          endScreen: document.getElementById('end-screen'),
+          countdownEl: document.getElementById('countdown'),
+          wordDisplay: document.getElementById('word-display'),
+          scoreEl: document.getElementById('score'),
+          timerEl: document.getElementById('timer'),
+          highscoreEl: document.getElementById('highscore'),
+          finalScoreEl: document.getElementById('final-score'),
+          endHighscoreEl: document.getElementById('end-highscore'),
+          confettiContainer: document.getElementById('confetti-container'),
+          resetFeedback: document.getElementById('reset-feedback'),
+          resetPopup: document.querySelector('#reset-feedback .rounded-2xl')
+        };
+      }
+
+      showScreen(screenName) {
+        const screens = ['homeScreen', 'countdownScreen', 'gameScreen', 'endScreen'];
+        screens.forEach(screen => {
+          this.elements[screen].classList.add('hidden');
+        });
+        this.elements[screenName].classList.remove('hidden');
+      }
+
+      updateScore(score) {
+        this.elements.scoreEl.textContent = score;
+      }
+
+      updateTimer(timeLeft) {
+        this.elements.timerEl.textContent = timeLeft.toFixed(1);
+        
         if (timeLeft <= 0.3) {
-          timerEl.classList.add('text-red-500');
+          this.elements.timerEl.classList.add('text-red-500');
+        } else {
+          this.elements.timerEl.classList.remove('text-red-500');
         }
+      }
+
+      updateHighscore(highscore) {
+        this.elements.highscoreEl.textContent = highscore;
+        this.elements.endHighscoreEl.textContent = highscore;
+      }
+
+      updateWord(word) {
+        this.elements.wordDisplay.textContent = word;
+      }
+
+      updateCountdown(count) {
+        this.elements.countdownEl.textContent = count;
+      }
+
+      showEndScreen(score, highscore) {
+        this.elements.finalScoreEl.textContent = score;
+        this.elements.endHighscoreEl.textContent = highscore;
+        this.showScreen('endScreen');
+      }
+
+      createConfetti() {
+        this.elements.confettiContainer.classList.remove('hidden');
+        this.elements.confettiContainer.innerHTML = '';
+
+        const colors = ['#FFC107', '#4CAF50', '#2196F3', '#E91E63', '#9C27B0', '#FF5722'];
+
+        for (let i = 0; i < CONFIG.CONFETTI_COUNT; i++) {
+          const confetti = document.createElement('div');
+          const size = Math.random() * 10 + 5;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          
+          confetti.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background-color: ${color};
+            top: -20px;
+            left: ${Math.random() * 100}%;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+            opacity: ${Math.random() * 0.8 + 0.2};
+            transform: rotate(${Math.random() * 360}deg);
+            animation: confetti-fall ${Math.random() * 3 + 2}s linear forwards;
+          `;
+
+          this.elements.confettiContainer.appendChild(confetti);
+        }
+
+        setTimeout(() => {
+          this.elements.confettiContainer.classList.add('hidden');
+          this.elements.confettiContainer.innerHTML = '';
+        }, 4000);
+      }
+
+      showResetFeedback() {
+        this.elements.resetFeedback.classList.remove('hidden');
+        setTimeout(() => {
+          this.elements.resetPopup.classList.remove('scale-95', 'opacity-0');
+          this.elements.resetPopup.classList.add('scale-100', 'opacity-100');
+        }, 10);
+
+        setTimeout(() => {
+          this.elements.resetPopup.classList.remove('scale-100', 'opacity-100');
+          this.elements.resetPopup.classList.add('scale-95', 'opacity-0');
+          setTimeout(() => {
+            this.elements.resetFeedback.classList.add('hidden');
+          }, 300);
+        }, 2000);
+      }
+
+      hideConfetti() {
+        this.elements.confettiContainer.classList.add('hidden');
+      }
+    }
+
+    // ============================================
+    // GAME STATE - Main game logic using requestAnimationFrame
+    // ============================================
+    class GameState {
+      constructor(ui, soundManager, wordManager) {
+        this.ui = ui;
+        this.soundManager = soundManager;
+        this.wordManager = wordManager;
+        
+        this.score = 0;
+        this.highscore = StorageManager.get(CONFIG.STORAGE_KEY, 0);
+        this.currentWord = '';
+        this.isBird = false;
+        this.isActive = false;
+        this.startTime = 0;
+        this.animationFrameId = null;
+        this.newHighscoreAchieved = false;
+        
+        this.ui.updateHighscore(this.highscore);
+      }
+
+      start() {
+        this.score = 0;
+        this.newHighscoreAchieved = false;
+        this.isActive = true;
+        this.wordManager.reset();
+        this.ui.updateScore(this.score);
+        this.showCountdown();
+      }
+
+      showCountdown() {
+        this.ui.showScreen('countdownScreen');
+        
+        let count = CONFIG.COUNTDOWN_START;
+        this.ui.updateCountdown(count);
+        this.soundManager.playCountdown();
+
+        const countdownInterval = setInterval(() => {
+          count--;
+          if (count > 0) {
+            this.ui.updateCountdown(count);
+            this.soundManager.playCountdown();
+          } else {
+            clearInterval(countdownInterval);
+            this.ui.updateCountdown('Go!');
+            this.soundManager.playCountdown();
+            
+            setTimeout(() => {
+              this.ui.showScreen('gameScreen');
+              this.startWordCycle();
+            }, 500);
+          }
+        }, CONFIG.COUNTDOWN_DURATION);
+      }
+
+      startWordCycle() {
+        if (!this.isActive) return;
+
+        // Cancel any existing animation frame
+        if (this.animationFrameId) {
+          cancelAnimationFrame(this.animationFrameId);
+        }
+
+        // Get new word
+        this.isBird = Math.random() > 0.5;
+        this.currentWord = this.wordManager.getRandomWord(this.isBird);
+        this.ui.updateWord(this.currentWord);
+
+        // Set start time
+        this.startTime = performance.now();
+        
+        // Start animation loop
+        this.updateTimer();
+      }
+
+      updateTimer() {
+        if (!this.isActive) return;
+
+        const elapsed = performance.now() - this.startTime;
+        const timeLeft = Math.max(0, (CONFIG.TIMER_DURATION - elapsed) / 1000);
+        
+        this.ui.updateTimer(timeLeft);
 
         if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          if (isBird) {
-            endGame();
+          // Time's up
+          if (this.isBird) {
+            // Bird word timed out - game over
+            this.end();
           } else {
-            startWordCycle();
+            // Non-bird word timed out - continue
+            this.startWordCycle();
+          }
+        } else {
+          // Continue animation
+          this.animationFrameId = requestAnimationFrame(() => this.updateTimer());
+        }
+      }
+
+      handleBirdClick() {
+        if (!this.isActive) return;
+
+        if (this.isBird) {
+          // Correct! It's a bird
+          this.score++;
+          this.ui.updateScore(this.score);
+
+          // Check for new highscore
+          if (this.score > this.highscore) {
+            this.highscore = this.score;
+            this.ui.updateHighscore(this.highscore);
+            StorageManager.set(CONFIG.STORAGE_KEY, this.highscore);
+            this.newHighscoreAchieved = true;
+          }
+
+          // Cancel current animation
+          if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+          }
+
+          // Start next word
+          this.startWordCycle();
+        } else {
+          // Wrong! It's not a bird
+          this.end();
+        }
+      }
+
+      end() {
+        this.isActive = false;
+        
+        // Cancel animation frame
+        if (this.animationFrameId) {
+          cancelAnimationFrame(this.animationFrameId);
+          this.animationFrameId = null;
+        }
+
+        // Show confetti if new highscore
+        if (this.newHighscoreAchieved) {
+          this.ui.createConfetti();
+          this.soundManager.playConfetti();
+        }
+
+        this.ui.showEndScreen(this.score, this.highscore);
+      }
+
+      resetHighscore() {
+        this.highscore = 0;
+        StorageManager.set(CONFIG.STORAGE_KEY, 0);
+        this.ui.updateHighscore(0);
+        this.ui.showResetFeedback();
+      }
+
+      showHome() {
+        this.isActive = false;
+        if (this.animationFrameId) {
+          cancelAnimationFrame(this.animationFrameId);
+        }
+        this.ui.showScreen('homeScreen');
+        this.ui.hideConfetti();
+      }
+    }
+
+    // ============================================
+    // KEYBOARD CONTROLLER - Handles keyboard input
+    // ============================================
+    class KeyboardController {
+      constructor(game) {
+        this.game = game;
+        this.boundHandler = this.handleKeyPress.bind(this);
+        this.init();
+      }
+
+      init() {
+        document.addEventListener('keydown', this.boundHandler);
+        
+        // Show keyboard hint on first visit
+        if (!sessionStorage.getItem('keyboardHintShown')) {
+          this.showKeyboardHint();
+          sessionStorage.setItem('keyboardHintShown', 'true');
+        }
+      }
+
+      handleKeyPress(event) {
+        // Space or Enter for bird button
+        if (event.code === 'Space' || event.code === 'Enter') {
+          event.preventDefault();
+          
+          const activeScreen = this.getActiveScreen();
+          
+          if (activeScreen === 'home') {
+            document.getElementById('start-btn').click();
+          } else if (activeScreen === 'game') {
+            document.getElementById('bird-btn').click();
+          } else if (activeScreen === 'end') {
+            document.getElementById('restart-btn').click();
           }
         }
-      }, 100);
-
-      wordTimeout = setTimeout(() => {
-        if (gameActive && !isBird) {
-          startWordCycle();
+        
+        // Escape to close modal
+        if (event.code === 'Escape') {
+          const modal = document.getElementById('how-to-play-modal');
+          if (!modal.classList.contains('hidden')) {
+            modal.classList.add('hidden');
+          }
         }
-      }, 3000);
-    }
-
-    function handleBirdClick() {
-      if (!gameActive) return;
-
-      if (isBird) {
-        score++;
-        scoreEl.textContent = score;
-
-        // Check if new highscore
-        const oldHighscore = parseInt(highscore);
-        if (score > oldHighscore) {
-          highscore = score;
-          highscoreEl.textContent = highscore;
-          localStorage.setItem('birdGameHighscore', highscore);
-          newHighscoreAchieved = true;
-        }
-
-        clearTimeout(wordTimeout);
-        clearInterval(timerInterval);
-        startWordCycle();
-      } else {
-        endGame();
-      }
-    }
-
-    function endGame() {
-      gameActive = false;
-      clearTimeout(wordTimeout);
-      clearInterval(timerInterval);
-
-      finalScoreEl.textContent = score;
-      endHighscoreEl.textContent = highscore;
-
-      // Show confetti only if new highscore was achieved
-      if (newHighscoreAchieved) {
-        createConfetti();
       }
 
-      gameScreen.classList.add('hidden');
-      endScreen.classList.remove('hidden');
-    }
+      getActiveScreen() {
+        if (!document.getElementById('home-screen').classList.contains('hidden')) return 'home';
+        if (!document.getElementById('game-screen').classList.contains('hidden')) return 'game';
+        if (!document.getElementById('end-screen').classList.contains('hidden')) return 'end';
+        return null;
+      }
 
-    function resetHighscore() {
-      const btn = resetBtn;
-      btn.classList.add('scale-95');
-      setTimeout(() => btn.classList.remove('scale-95'), 100);
-
-      // Show popup feedback
-      resetFeedback.classList.remove('hidden');
-      setTimeout(() => {
-        resetPopup.classList.remove('scale-95', 'opacity-0');
-        resetPopup.classList.add('scale-100', 'opacity-100');
-      }, 10);
-
-      setTimeout(() => {
-        resetPopup.classList.remove('scale-100', 'opacity-100');
-        resetPopup.classList.add('scale-95', 'opacity-0');
+      showKeyboardHint() {
+        const hint = document.createElement('div');
+        hint.className = 'keyboard-hint';
+        hint.textContent = '💡 Tip: Press SPACE to play!';
+        document.body.appendChild(hint);
+        
         setTimeout(() => {
-          resetFeedback.classList.add('hidden');
-        }, 300);
-      }, 2000);
+          hint.remove();
+        }, 3000);
+      }
 
-      highscore = 0;
-      localStorage.setItem('birdGameHighscore', '0');
-      highscoreEl.textContent = '0';
-      endHighscoreEl.textContent = '0';
+      destroy() {
+        document.removeEventListener('keydown', this.boundHandler);
+      }
     }
 
-    function showHomeScreen() {
-      endScreen.classList.add('hidden');
-      homeScreen.classList.remove('hidden');
-      // Hide confetti when going to home screen
-      confettiContainer.classList.add('hidden');
+    // ============================================
+    // APPLICATION INITIALIZATION
+    // ============================================
+    class BirdTapGame {
+      constructor() {
+        // Word lists
+        const birdNames = [
+          'Sparrow', 'Crow', 'Pigeon', 'Parrot', 'Eagle', 'Peacock',
+          'Owl', 'Duck', 'Swan', 'Hawk', 'Falcon', 'Vulture',
+          'Kingfisher', 'Woodpecker', 'Mynah', 'Bulbul', 'Robin',
+          'Hummingbird', 'Flamingo', 'Stork'
+        ];
+
+        const nonBirdWords = [
+          'Tiger', 'Lion', 'Elephant', 'Car', 'House', 'Tree',
+          'Computer', 'Phone', 'Book', 'Chair', 'Table', 'Mountain',
+          'River', 'Ocean', 'Sun', 'Moon', 'Star', 'Cloud',
+          'Rain', 'Wind', 'Fire', 'Water', 'Earth', 'Air'
+        ];
+
+        // Initialize managers
+        this.ui = new UIController();
+        this.soundManager = new SoundManager();
+        this.wordManager = new WordManager(birdNames, nonBirdWords);
+        this.game = new GameState(this.ui, this.soundManager, this.wordManager);
+        this.keyboard = new KeyboardController(this.game);
+
+        // Check localStorage availability
+        if (!StorageManager.isAvailable()) {
+          console.warn('localStorage not available - highscore will not persist');
+        }
+
+        this.bindEvents();
+      }
+
+      bindEvents() {
+        // Button event listeners
+        document.getElementById('start-btn').addEventListener('click', () => {
+          this.soundManager.init(); // Initialize audio on user interaction
+          this.game.start();
+        });
+
+        document.getElementById('bird-btn').addEventListener('click', () => {
+          this.game.handleBirdClick();
+        });
+
+        document.getElementById('restart-btn').addEventListener('click', () => {
+          this.game.start();
+        });
+
+        document.getElementById('reset-btn').addEventListener('click', () => {
+          this.game.resetHighscore();
+        });
+
+        document.getElementById('menu-btn').addEventListener('click', () => {
+          this.game.showHome();
+        });
+
+        // Modal events
+        const modal = document.getElementById('how-to-play-modal');
+        
+        document.getElementById('how-to-play-btn').addEventListener('click', () => {
+          modal.classList.remove('hidden');
+        });
+
+        document.getElementById('close-how-to-play').addEventListener('click', () => {
+          modal.classList.add('hidden');
+        });
+
+        document.getElementById('got-it-btn').addEventListener('click', () => {
+          modal.classList.add('hidden');
+          this.game.showHome();
+        });
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.add('hidden');
+          }
+        });
+      }
+    }
+
+    // Initialize the game when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        new BirdTapGame();
+      });
+    } else {
+      new BirdTapGame();
     }
   </script>
 </body>
