@@ -715,26 +715,6 @@
         opacity: 0;
       }
     }
-
-    /* Keyboard hint */
-    .keyboard-hint {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      z-index: 100;
-      opacity: 0;
-      animation: fadeInOut 3s ease-in-out;
-    }
-
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0; }
-      10%, 90% { opacity: 1; }
-    }
   </style>
 </head>
 <body class="bg-background-color">
@@ -1606,12 +1586,6 @@
 
       init() {
         document.addEventListener('keydown', this.boundHandler);
-        
-        // Show keyboard hint on first visit
-        if (!sessionStorage.getItem('keyboardHintShown')) {
-          this.showKeyboardHint();
-          sessionStorage.setItem('keyboardHintShown', 'true');
-        }
       }
 
       handleKeyPress(event) {
@@ -1649,17 +1623,6 @@
         if (!document.getElementById('game-screen').classList.contains('hidden')) return 'game';
         if (!document.getElementById('end-screen').classList.contains('hidden')) return 'end';
         return null;
-      }
-
-      showKeyboardHint() {
-        const hint = document.createElement('div');
-        hint.className = 'keyboard-hint';
-        hint.textContent = '💡 Tip: Press SPACE to play!';
-        document.body.appendChild(hint);
-        
-        setTimeout(() => {
-          hint.remove();
-        }, 3000);
       }
 
       destroy() {
