@@ -74,3 +74,10 @@ Fork the repo, make changes, and open a pull request — contributions are alway
 ---
 
 Made with ❤️ by [Saswat Patra](https://saswatpatra.carrd.co/)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/saswatpatra/)
+[![Instagram](https://img.shields.io/badge/Instagram-Profile-purple?logo=instagram&style=for-the-badge)](https://www.instagram.com/_saswat_patra_/)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github&style=for-the-badge)](https://github.com/saswatpatra)
+
+
+
