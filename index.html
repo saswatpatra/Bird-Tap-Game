@@ -65,6 +65,134 @@
       box-shadow: 0 0 12px 4px rgba(255, 193, 7, 0.4);
     }
 
+    /* ============================================ */
+    /* LOADING SCREEN - FAVICON ZOOM & FADE */
+    /* ============================================ */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #87CEEB 0%, #E0F2F1 100%);
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Favicon container */
+    .favicon-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 200px;
+    }
+
+    /* Favicon image with zoom animation */
+    .favicon-logo {
+      width: 80px;
+      height: 80px;
+      animation: favicon-zoom-fade 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.15));
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+
+    /* Glow ring effect */
+    .favicon-glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.3) 0%, transparent 70%);
+      animation: glow-pulse 2s ease-out forwards;
+    }
+
+    /* Zoom and fade animation */
+    @keyframes favicon-zoom-fade {
+      0% {
+        transform: scale(0.3);
+        opacity: 0;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+      }
+      15% {
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 15px 50px rgba(76, 175, 80, 0.3));
+      }
+      70% {
+        transform: scale(1);
+        filter: drop-shadow(0 12px 40px rgba(76, 175, 80, 0.25));
+      }
+      85% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.2);
+        opacity: 0;
+        filter: drop-shadow(0 20px 60px rgba(76, 175, 80, 0.1));
+      }
+    }
+
+    /* Glow pulse */
+    @keyframes glow-pulse {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      40% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      70% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Optional: subtle game name below favicon */
+    .loading-name {
+      position: absolute;
+      bottom: 30px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      color: rgba(76, 175, 80, 0.8);
+      animation: name-fade 2s ease-in-out forwards;
+      letter-spacing: 1px;
+    }
+
+    @keyframes name-fade {
+      0%, 20% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      40% {
+        opacity: 0.8;
+        transform: translateY(0);
+      }
+      80% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
     /* Version Badge Styles */
     .version-link {
       text-decoration: underline;
@@ -718,6 +846,20 @@
   </style>
 </head>
 <body class="bg-background-color">
+  <!-- Loading Screen with Favicon Zoom & Fade -->
+  <div id="loading-screen">
+    <div class="favicon-container">
+      <!-- Glow effect -->
+      <div class="favicon-glow"></div>
+      
+      <!-- Favicon will be dynamically inserted here -->
+      <img id="favicon-img" class="favicon-logo" alt="Loading..." />
+    </div>
+    
+    <!-- Optional: Game name (remove if you want it even more minimal) -->
+    <!-- <div class="loading-name">Bird Tap</div> -->
+  </div>
+
   <div class="relative flex min-h-[100dvh] flex-col overflow-hidden bg-gradient-sky">
     <!-- Enhanced Sky Background -->
     <div class="sky-gradient"></div>
@@ -938,6 +1080,7 @@
               <li>🐦 Enhanced typography (Fredoka One + Poppins)</li>
               <li>🎨 Better color scheme and shadows</li>
               <li>📐 Improved responsive layout</li>
+              <li>🎯 Clean favicon intro animation</li>
             </ul>
           </div>
 
@@ -989,6 +1132,90 @@
   </div>
 
   <script>
+    // ============================================
+    // LOADING SCREEN MANAGER - FAVICON ZOOM & FADE
+    // ============================================
+    class LoadingManager {
+      constructor() {
+        this.loadingScreen = document.getElementById('loading-screen');
+        this.faviconImg = document.getElementById('favicon-img');
+        this.loadingDuration = 2000; // Exactly 2 seconds
+        this.init();
+      }
+
+      async init() {
+        // Get favicon from HTML
+        this.loadFavicon();
+        
+        try {
+          // Start font loading in background
+          const fontsPromise = document.fonts.ready;
+          
+          // Wait for exactly 2 seconds (animation duration)
+          await new Promise(resolve => setTimeout(resolve, this.loadingDuration));
+          
+          // Ensure fonts are loaded (but don't wait longer than 2s)
+          await Promise.race([
+            fontsPromise,
+            new Promise(resolve => setTimeout(resolve, 100))
+          ]);
+
+          // Hide loading screen with smooth fade
+          this.hide();
+        } catch (error) {
+          console.error('Error during loading:', error);
+          // Hide anyway after 2 seconds
+          setTimeout(() => this.hide(), this.loadingDuration);
+        }
+      }
+
+      loadFavicon() {
+        // Try to get the best favicon available
+        let faviconUrl = null;
+        
+        // Priority order: 192x192 > apple-touch-icon > 512x512 > 32x32 > 16x16
+        const selectors = [
+          'link[sizes="192x192"]',
+          'link[rel="apple-touch-icon"]',
+          'link[sizes="512x512"]',
+          'link[sizes="32x32"]',
+          'link[sizes="16x16"]',
+          'link[rel="icon"]'
+        ];
+        
+        for (const selector of selectors) {
+          const link = document.querySelector(selector);
+          if (link && link.href) {
+            faviconUrl = link.href;
+            break;
+          }
+        }
+        
+        // Fallback: try to get favicon.ico
+        if (!faviconUrl) {
+          faviconUrl = '/favicon.ico';
+        }
+        
+        // Set the favicon image
+        this.faviconImg.src = faviconUrl;
+        
+        // Handle load error
+        this.faviconImg.onerror = () => {
+          console.warn('Could not load favicon');
+          // You could set a fallback SVG here if needed
+        };
+      }
+
+      hide() {
+        this.loadingScreen.classList.add('hidden');
+        
+        // Remove from DOM after fade completes
+        setTimeout(() => {
+          this.loadingScreen.style.display = 'none';
+        }, 500);
+      }
+    }
+
     // ============================================
     // CONFIGURATION
     // ============================================
@@ -1712,6 +1939,9 @@
         });
       }
     }
+
+    // Initialize loading screen first
+    new LoadingManager();
 
     // Initialize the game when DOM is ready
     if (document.readyState === 'loading') {
