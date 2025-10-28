@@ -1,4 +1,4 @@
-# 🐦 Bird Tap Game
+# 🐤 Bird Tap Game
 
 The classic "Chidiya Udd" game, reimagined digitally!
 
@@ -6,22 +6,31 @@ The classic "Chidiya Udd" game, reimagined digitally!
 
 ## 1️⃣ 🔗 Play Online
 
-🎮 [Play Bird Tap Game](https://birdtap.vercel.app/)
+🎮 [birdtap.vercel.app](https://birdtap.vercel.app/)
 
 ---
 
 ## 2️⃣ 🧠 About the Game
 
-A lightweight browser-based game where you tap or click to keep the bird flying while avoiding obstacles.  
-Inspired by the nostalgia of *Chidiya Udd*, brought to life in a digital form.
+- **Bird Tap Game** is a digital twist on the nostalgic *“Chidiya Udd”* — the classic reflex game we all played as kids.
+
+- Just like the childhood game, timing is everything — tap the **BIRD** button at the right moment to score points and test your reflexes!
+
+- Built purely with **HTML, CSS, and JavaScript**, it’s lightweight, fast, and completely browser-based — no downloads, no ads, just pure fun.
 
 ---
 
 ## 3️⃣ 🎮 How to Play
 
-- 🖱️ Click or tap to make the bird fly  
-- 🚧 Avoid hitting obstacles  
-- ⭐ Try to score as high as possible!
+- ✨ A word will appear on the screen. 
+- 🐦 If it’s a bird, tap the **“BIRD!”** button.  
+- 🚫 If it’s not a bird, do nothing.  
+- ⏱️ You have **1 second** to react — miss it, and it’s over!  
+- ⭐ Keep tapping, keep scoring — to score a high score!
+  
+### ⚠️ Game Over if:
+- ❌ You tap on a non-bird word  
+- ⏳ A bird word times out without a tap
 
 ---
 
@@ -64,4 +73,4 @@ Fork the repo, make changes, and open a pull request — contributions are alway
 
 ---
 
-Made with ❤️ by [Saswat Patra](https://github.com/saswatpatra)
+Made with ❤️ by [Saswat Patra](https://saswatpatra.carrd.co/)
