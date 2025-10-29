@@ -43,11 +43,17 @@ The classic "Chidiya Udd" game, reimagined digitally!
 
 ---
 
-## 5️⃣ 🛠️ Built With
+## 5️⃣ 🧩 Built On
 
-- ![html5](https://www.readmecodegen.com/api/social-icon?name=html5&size=32) HTML  
-- ![css](https://www.readmecodegen.com/api/social-icon?name=css&size=32) CSS  
-- ![javascript](https://www.readmecodegen.com/api/social-icon?name=javascript&size=32) JavaScript  
+![html5](https://www.readmecodegen.com/api/social-icon?name=html5&size=32) ![css](https://www.readmecodegen.com/api/social-icon?name=css&size=32) ![javascript](https://www.readmecodegen.com/api/social-icon?name=javascript&size=32)
+
+---
+
+## 🛠️ Tech Used
+
+- Qwen
+- Deepseek
+- Claude
 
 ---
 
