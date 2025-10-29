@@ -83,7 +83,7 @@ Fork the repo, make changes, and open a pull request — contributions are alway
 ### Made with ❤️ by [Saswat Patra](https://saswatpatra.carrd.co/)
 
 
-[![linkedin](https://www.readmecodegen.com/api/social-icon?name=linkedin&animation=shake&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.instagram.com/_saswat_patra_/)
+[![linkedin](https://www.readmecodegen.com/api/social-icon?name=linkedin&animation=shake&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.linkedin.com/in/saswatpatra/)
 [![instagram](https://www.readmecodegen.com/api/social-icon?name=instagram&size=46&animation=shake&color=%23ef4444&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.instagram.com/_saswat_patra_/)
 [![github](https://www.readmecodegen.com/api/social-icon?name=github&animation=shake&reverseBackground=true&showText=true&text=saswatpatra&link=https%3A%2F%2Fgithub.com%2Fsaswatpatra)](https://github.com/saswatpatra)
 [![gmail](https://www.readmecodegen.com/api/social-icon?name=gmail&animation=shake&reverseBackground=true&showText=true&text=saswatpatra2004%40gmail.com&link=mailto%3Asaswatpatra2004%40gmail.com)](mailto:saswatpatra2004@gmail.com)
