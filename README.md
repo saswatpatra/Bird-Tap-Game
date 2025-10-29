@@ -2,11 +2,13 @@
 
 The classic "Chidiya Udd" game, reimagined digitally!
 
+🎮 Link - [birdtap.vercel.app](https://birdtap.vercel.app/)
+
 ---
 
-## 1️⃣ 🔗 Play Online
+## 📸 Screenshot
 
-🎮 [birdtap.vercel.app](https://birdtap.vercel.app/)
+![Gameplay Screenshot](assets/screenshot/desktop.png)
 
 ---
 
@@ -43,21 +45,10 @@ The classic "Chidiya Udd" game, reimagined digitally!
 
 ---
 
-## 5️⃣ 🧩 Built On
-
-![html5](https://www.readmecodegen.com/api/social-icon?name=html5) ![css](https://www.readmecodegen.com/api/social-icon?name=css) ![javascript](https://www.readmecodegen.com/api/social-icon?name=javascript)
-
----
-
-## 🛠️ Tech Used
-
-![Claude Icon](https://img.icons8.com/fluency/48/claude-ai.png)
-![Deepseek Icon](https://img.icons8.com/fluency/48/deepseek.png)
-<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/qwen.png" alt="ChatGPT Icon" width="48">
-
-
-Claude  |  DeepSeek  |  Qwen
-
+## 🧩 Built On | 🛠️ Tools Used
+| Languages | Tools |
+|------------|--------|
+| ![html5](https://www.readmecodegen.com/api/social-icon?name=html5) ![css](https://www.readmecodegen.com/api/social-icon?name=css) ![javascript](https://www.readmecodegen.com/api/social-icon?name=javascript)| ![Claude Icon](https://img.icons8.com/fluency/48/claude-ai.png) ![Deepseek Icon](https://img.icons8.com/fluency/48/deepseek.png) <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/qwen.png" alt="ChatGPT Icon" width="48">
 
 ---
 
@@ -65,15 +56,6 @@ Claude  |  DeepSeek  |  Qwen
 
 Have ideas or improvements?  
 Fork the repo, make changes, and open a pull request — contributions are always welcome!
-
----
-
-## 7️⃣ 📸 Screenshot (optional)
-
-> *(Add your image here later — e.g. `assets/screenshot.png`)*  
-> ```markdown
-> ![Game Screenshot](assets/screenshot.png)
-> ```
 
 ---
 
