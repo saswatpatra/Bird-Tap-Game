@@ -1,8 +1,21 @@
-# 🐤 Bird Tap Game
+# ![Gameplay Screenshot](assets/favicon/favicon-32x32.png) Bird Tap Game
 
 The classic "Chidiya Udd" game, reimagined digitally!
 
 🎮 Link - [birdtap.vercel.app](https://birdtap.vercel.app/)
+
+---
+
+## 📚 Table of Contents
+
+- [📸 Screenshot](#-screenshot)
+- [🧠 About the Game](#-about-the-game)
+- [🎮 How to Play](#-how-to-play)
+- [✨ Key Features](#-key-features)
+- [🧩 Built On | 🛠️ Tools Used](#-built-on--️-tools-used)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+
 
 ---
 
@@ -12,17 +25,19 @@ The classic "Chidiya Udd" game, reimagined digitally!
 
 ---
 
-## 2️⃣ 🧠 About the Game
+## 🧠 About the Game
 
 - **Bird Tap Game** is a digital twist on the nostalgic *“Chidiya Udd”* — the classic reflex game we all played as kids.
 
 - Just like the childhood game, timing is everything — tap the **BIRD** button at the right moment to score points and test your reflexes!
+  
+- Built with the help of AI brains and human vibes — coded in HTML, CSS, and JavaScript.
 
-- Built purely with **HTML, CSS, and JavaScript**, it’s lightweight, fast, and completely browser-based — no downloads, no ads, just pure fun.
+- Fast, lightweight, and playable straight from the browser — no downloads, no ads, just pure fun.
 
 ---
 
-## 3️⃣ 🎮 How to Play
+## 🎮 How to Play
 
 - ✨ A word will appear on the screen. 
 - 🐦 If it’s a bird, tap the **“BIRD!”** button.  
@@ -36,11 +51,11 @@ The classic "Chidiya Udd" game, reimagined digitally!
 
 ---
 
-## 4️⃣ ✨ Key Features
+## ✨ Key Features
 
 - 🎯 Simple and addictive gameplay  
 - ⚡ Lightweight — runs directly in your browser  
-- 🎨 Minimal, clean UI  
+- 🎨 A cool, aesthetic and minimal UI with smooth vibes
 - 🕹️ No installations needed  
 
 ---
@@ -52,14 +67,14 @@ The classic "Chidiya Udd" game, reimagined digitally!
 
 ---
 
-## 6️⃣ 🤝 Contributing
+## 🤝 Contributing
 
 Have ideas or improvements?  
 Fork the repo, make changes, and open a pull request — contributions are always welcome!
 
 ---
 
-## 8️⃣ 📄 License
+## 📄 License
 
 🧾 MIT License — see [LICENSE](LICENSE) for details.
 
@@ -71,4 +86,3 @@ Fork the repo, make changes, and open a pull request — contributions are alway
 [![instagram](https://www.readmecodegen.com/api/social-icon?name=instagram&size=46&animation=shake&color=%23ef4444&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.instagram.com/_saswat_patra_/)
 [![github](https://www.readmecodegen.com/api/social-icon?name=github&animation=shake&reverseBackground=true&showText=true&text=saswatpatra&link=https%3A%2F%2Fgithub.com%2Fsaswatpatra)](https://github.com/saswatpatra)
 [![gmail](https://www.readmecodegen.com/api/social-icon?name=gmail&animation=shake&reverseBackground=true&showText=true&text=saswatpatra2004%40gmail.com&link=mailto%3Asaswatpatra2004%40gmail.com)](mailto:saswatpatra2004@gmail.com)
-[![Instagram](https://img.icons8.com/fluency/48/instagram-new.png)](https://www.instagram.com/_saswat_patra_/)
