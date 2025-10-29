@@ -80,7 +80,8 @@ Fork the repo, make changes, and open a pull request — contributions are alway
 
 ---
 
-### Made with ❤️ by [Saswat Patra](https://saswatpatra.carrd.co/)
+### Made with ❤️ by <a href="https://saswatpatra.carrd.co/" target="_blank">Saswat Patra</a>
+
 
 [![linkedin](https://www.readmecodegen.com/api/social-icon?name=linkedin&animation=shake&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.instagram.com/_saswat_patra_/)
 [![instagram](https://www.readmecodegen.com/api/social-icon?name=instagram&size=46&animation=shake&color=%23ef4444&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.instagram.com/_saswat_patra_/)
