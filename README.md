@@ -45,15 +45,19 @@ The classic "Chidiya Udd" game, reimagined digitally!
 
 ## 5️⃣ 🧩 Built On
 
-![html5](https://www.readmecodegen.com/api/social-icon?name=html5&size=32) ![css](https://www.readmecodegen.com/api/social-icon?name=css&size=32) ![javascript](https://www.readmecodegen.com/api/social-icon?name=javascript&size=32)
+![html5](https://www.readmecodegen.com/api/social-icon?name=html5) ![css](https://www.readmecodegen.com/api/social-icon?name=css) ![javascript](https://www.readmecodegen.com/api/social-icon?name=javascript)
 
 ---
 
 ## 🛠️ Tech Used
 
-- Qwen
-- Deepseek
-- Claude
+![Claude Icon](https://img.icons8.com/fluency/48/claude-ai.png)
+![Deepseek Icon](https://img.icons8.com/fluency/48/deepseek.png)
+<img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/qwen.png" alt="ChatGPT Icon" width="48">
+
+
+Claude  |  DeepSeek  |  Qwen
+
 
 ---
 
@@ -79,7 +83,7 @@ Fork the repo, make changes, and open a pull request — contributions are alway
 
 ---
 
-Made with ❤️ by [Saswat Patra](https://saswatpatra.carrd.co/)
+### Made with ❤️ by [Saswat Patra](https://saswatpatra.carrd.co/)
 
 [![linkedin](https://www.readmecodegen.com/api/social-icon?name=linkedin&animation=shake&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.instagram.com/_saswat_patra_/)
 [![instagram](https://www.readmecodegen.com/api/social-icon?name=instagram&size=46&animation=shake&color=%23ef4444&showText=true&text=%40_saswat_patra_&link=https%3A%2F%2Fwww.instagram.com%2F_saswat_patra_%2F)](https://www.instagram.com/_saswat_patra_/)
